@@ -50,7 +50,18 @@ var plonkExtras = {
     tttapi.createPlonk(this.tokenID, this.userID, myData, this.callback);
   },
 
+ ajaxCreateMessage: function (e,sender,receiver,mContent){
+    var myData = {
+      "message": {
+        "sender_user_name": sender,
+        "receiver_user_name": receiver,
+        "plonk_message": mContent
+        }
+      }
 
+    e.preventDefault();
+    tttapi.createMessage(this.tokenID, this.userID, myData, this.callback);
+  },
 };
 
 
@@ -280,7 +291,18 @@ var tttapi = {
     }, callback);
   },
 
-
+ createMessage: function (token, id, data, callback) {
+    this.ajax({
+      method: 'POST',
+      url: this.ttt + '/messages',
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify(data),
+      dataType: 'json',
+    }, callback);
+  },
 
 };
 

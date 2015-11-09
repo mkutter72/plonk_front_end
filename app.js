@@ -21,6 +21,12 @@ var initializeApp = function () {
       $('#willTade').val());
     });
 
+  $('#messageDone').on('click', function(event) {
+    //$('#profile').blur();
+
+    plonkExtras.ajaxCreateMessage(event,$('#sender').val(),$('#receiver').val(),
+      $('#messageContent').val());
+    });
 };
 
 // Setup so index.js file can call this
