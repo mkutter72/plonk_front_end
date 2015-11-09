@@ -50,9 +50,7 @@ These tables, models and routers originate from https://github.com/gaand/project
 | city | CHARACTER VARYING |
 | state| CHARACTER VARYING |
 | zip_code| INTEGER |
-| email_address | CHARACTER VARYING |
 | user_name | CHARACTER VARYING, must be unique|
-| password | CHARACTER VARYING |
 | foreign key | Reference to User |
 | updated_at | TIMESTAMP WITHOUT TIME ZONE |
 | created_at | TIMESTAMP WITHOUT TIME ZONE |
