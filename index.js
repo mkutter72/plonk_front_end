@@ -2,6 +2,40 @@
 
 var externAppsFunctions = externAppsFunctions || {};
 
+var plonkExtras = {
+  tokenID: 0,
+  userID: 0,
+
+  callback: function callback(error, data) {
+    if (error) {
+
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+
+    $('#result').val(JSON.stringify(data, null, 4));
+  },
+
+  ajaxCreateProfile: function (e,fName,lName,uName,address,city,state,zip){
+    var myData = {
+      "profile": {
+        "first_name": fName,
+        "last_name": fName,
+        "user_name": uName,
+        "street_address": address,
+        "city": city,
+        "state": state,
+        "zip_code": zip
+        }
+      }
+
+    e.preventDefault();
+    tttapi.createProfile(this.tokenID, this.userID, myData, this.callback);
+  },
+};
+
+
+
 var gameExtras = {
   myToken: 0,
   myGameID: 0,
@@ -198,7 +232,21 @@ var tttapi = {
     };
     this.gameWatcher = resourceWatcher(url, auth); //jshint ignore: line
     return this.gameWatcher;
-  }
+  },
+
+
+  createProfile: function (token, id, data, callback) {
+    this.ajax({
+      method: 'POST',
+      url: this.ttt + '/profiles',
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify(data),
+      dataType: 'json',
+    }, callback);
+  },
 };
 
 ////////////////////////
@@ -261,7 +309,7 @@ $(function() {
       }
       callback(null, data);
       $('.token').val(data.user.token);
-      gameExtras.myToken = data.user.token
+      plonkExtras.tokenID = data.user.token
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
