@@ -262,8 +262,6 @@ $(function() {
       callback(null, data);
       $('.token').val(data.user.token);
       gameExtras.myToken = data.user.token
-      $(".Main").show('slow');
-      $(".userInfo").hide();
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
