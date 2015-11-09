@@ -32,6 +32,25 @@ var plonkExtras = {
     e.preventDefault();
     tttapi.createProfile(this.tokenID, this.userID, myData, this.callback);
   },
+
+
+  ajaxCreatePlonk: function (e,vYard,variety,year,numBottles,price,willTrade){
+    var myData = {
+      "plonk": {
+        "vineyard": vYard,
+        "variety": variety,
+        "year": year,
+        "number_of_bottles": numBottles,
+        "price": price,
+        "will_trade": willTrade
+        }
+      }
+
+    e.preventDefault();
+    tttapi.createPlonk(this.tokenID, this.userID, myData, this.callback);
+  },
+
+
 };
 
 
@@ -247,6 +266,22 @@ var tttapi = {
       dataType: 'json',
     }, callback);
   },
+
+  createPlonk: function (token, id, data, callback) {
+    this.ajax({
+      method: 'POST',
+      url: this.ttt + '/plonks',
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify(data),
+      dataType: 'json',
+    }, callback);
+  },
+
+
+
 };
 
 ////////////////////////
