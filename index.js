@@ -54,7 +54,7 @@ var plonkExtras = {
  ajaxCreateMessage: function (e,sender,receiver,mContent){
     var myData = {
       "message": {
-        // "sender_user_name": sender,
+        "sender_user_name": "",
         "receiver_user_name": receiver,
         "plonk_message": mContent,
         "user_id": this.userID
