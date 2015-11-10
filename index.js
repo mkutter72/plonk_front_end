@@ -62,6 +62,11 @@ var plonkExtras = {
     e.preventDefault();
     tttapi.createMessage(this.tokenID, this.userID, myData, this.callback);
   },
+
+  ajaxShowPlonk: function(e,query){
+    e.preventDefault();
+    tttapi.showPlonk(this.tokenID, this.userID, query, this.callback);
+  },
 };
 
 
@@ -304,6 +309,17 @@ var tttapi = {
     }, callback);
   },
 
+  showPlonk: function (token, id, query, callback) {
+    this.ajax({
+      method: 'GET',
+      url: this.ttt + '/plonks' + query,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+    }, callback);
+  },
 };
 
 ////////////////////////

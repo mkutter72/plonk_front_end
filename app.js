@@ -27,6 +27,23 @@ var initializeApp = function () {
     plonkExtras.ajaxCreateMessage(event,$('#sender').val(),$('#receiver').val(),
       $('#messageContent').val());
     });
+
+  $('#plonkShow').on('click', function(event) {
+    //$('#profile').blur();
+
+    plonkExtras.ajaxShowPlonk(event, "");
+    });
+
+ $('#plonkSearch').on('click', function(event) {
+    //$('#profile').blur();
+    if ($('#plonkCity').val()) {
+      plonkExtras.ajaxShowPlonk(event, "?city=" + $('#plonkCity').val());
+      };
+    if ($('#plonkVariety').val()) {
+      plonkExtras.ajaxShowPlonk(event, "?variety=" + $('#plonkVariety').val());
+      };
+    });
+
 };
 
 // Setup so index.js file can call this
