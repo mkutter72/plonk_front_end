@@ -46,6 +46,12 @@ var initializeApp = function () {
       };
     });
 
+  $('#plonkShowMine').on('click', function(event) {
+
+    plonkExtras.ajaxShowPlonk(event, "?user_id=" + plonkExtras.userID);
+
+    });
+
   $('#displayMessages').on('click', function(event) {
     //$('#profile').blur();
 
