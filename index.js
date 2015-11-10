@@ -51,6 +51,22 @@ var plonkExtras = {
     tttapi.createPlonk(this.tokenID, this.userID, myData, this.callback);
   },
 
+  ajaxUpdatePlonk: function (e,vYard,variety,year,numBottles,price,willTrade, plonkID){
+    var myData = {
+      "plonk": {
+        "vineyard": vYard,
+        "variety": variety,
+        "year": year,
+        "number_of_bottles": numBottles,
+        "price": price,
+        "will_trade": willTrade
+        }
+      }
+
+    e.preventDefault();
+    tttapi.updatePlonk(this.tokenID, plonkID, myData, this.callback);
+  },
+
  ajaxCreateMessage: function (e,sender,receiver,mContent){
     var myData = {
       "message": {
@@ -85,6 +101,12 @@ var plonkExtras = {
     e.preventDefault();
     tttapi.destoryUsersMessages(this.tokenID, this.userID, this.callback);
   },
+
+  ajaxDeletePlonk: function(e, id) {
+    e.preventDefault();
+    tttapi.destoryPlonk(this.tokenID, id, this.callback);
+  },
+
 };
 
 
@@ -314,6 +336,19 @@ var tttapi = {
     }, callback);
   },
 
+  updatePlonk: function (token, id, data, callback) {
+    this.ajax({
+      method: 'PATCH',
+      url: this.ttt + '/plonks/' + id,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify(data),
+      dataType: 'json',
+    }, callback);
+  },
+
  createMessage: function (token, data, callback) {
     this.ajax({
       method: 'POST',
@@ -369,6 +404,19 @@ var tttapi = {
     this.ajax({
       method: 'DELETE',
       url: this.ttt + '/messages/' + id,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+    }, callback);
+  },
+
+
+  destoryPlonk: function (token, id, callback) {
+    this.ajax({
+      method: 'DELETE',
+      url: this.ttt + '/plonks/' + id,
       headers: {
         Authorization: 'Token token=' + token
       },

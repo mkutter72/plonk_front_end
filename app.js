@@ -21,6 +21,14 @@ var initializeApp = function () {
       $('#willTade').val());
     });
 
+   $('#plonkEdit').on('click', function(event) {
+    //$('#profile').blur();
+
+    plonkExtras.ajaxUpdatePlonk(event,$('#vineyard').val(),$('#variety').val(),
+      $('#year').val(),$('#numBottles').val(),$('#price').val(),
+      $('#willTade').val(),$('#plonkID').val());
+    });
+
   $('#messageDone').on('click', function(event) {
     //$('#profile').blur();
 
@@ -51,6 +59,14 @@ var initializeApp = function () {
     plonkExtras.ajaxShowPlonk(event, "?user_id=" + plonkExtras.userID);
 
     });
+
+
+  $('#plonkDelete').on('click', function(event) {
+
+    if ($('#plonkID').val())
+      plonkExtras.ajaxDeletePlonk(event, $('#plonkID').val());
+    });
+
 
   $('#displayMessages').on('click', function(event) {
     //$('#profile').blur();
