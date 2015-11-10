@@ -382,7 +382,8 @@ $(function() {
       }
       callback(null, data);
       $('.token').val(data.user.token);
-      plonkExtras.tokenID = data.user.token
+      plonkExtras.tokenID = data.user.token;
+      plonkExtras.userID = data.user.id;
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
