@@ -26,6 +26,8 @@ var initializeApp = function () {
 
     plonkExtras.ajaxCreateMessage(event,$('#sender').val(),$('#receiver').val(),
       $('#messageContent').val());
+
+    $('#sender').reset();
     });
 
   $('#plonkShow').on('click', function(event) {
@@ -34,7 +36,7 @@ var initializeApp = function () {
     plonkExtras.ajaxShowPlonk(event, "");
     });
 
- $('#plonkSearch').on('click', function(event) {
+  $('#plonkSearch').on('click', function(event) {
     //$('#profile').blur();
     if ($('#plonkCity').val()) {
       plonkExtras.ajaxShowPlonk(event, "?city=" + $('#plonkCity').val());
@@ -42,6 +44,26 @@ var initializeApp = function () {
     if ($('#plonkVariety').val()) {
       plonkExtras.ajaxShowPlonk(event, "?variety=" + $('#plonkVariety').val());
       };
+    });
+
+  $('#displayMessages').on('click', function(event) {
+    //$('#profile').blur();
+
+    plonkExtras.ajaxDisplayUsersMessages(event);
+    });
+
+
+  $('#showMessages').on('click', function(event) {
+    //$('#profile').blur();
+
+    plonkExtras.ajaxShowAllMessages(event);
+    });
+
+
+ $('#clearMessages').on('click', function(event) {
+    //$('#profile').blur();
+
+    plonkExtras.ajaxDestoryUsersMessages(event);
     });
 
 };

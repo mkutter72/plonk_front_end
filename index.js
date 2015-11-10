@@ -20,12 +20,13 @@ var plonkExtras = {
     var myData = {
       "profile": {
         "first_name": fName,
-        "last_name": fName,
+        "last_name": lName,
         "user_name": uName,
         "street_address": address,
         "city": city,
         "state": state,
-        "zip_code": zip
+        "zip_code": zip,
+        "user_id" : this.userID
         }
       }
 
@@ -53,19 +54,36 @@ var plonkExtras = {
  ajaxCreateMessage: function (e,sender,receiver,mContent){
     var myData = {
       "message": {
-        "sender_user_name": sender,
+        // "sender_user_name": sender,
         "receiver_user_name": receiver,
-        "plonk_message": mContent
+        "plonk_message": mContent,
+        "user_id": this.userID
         }
       }
 
     e.preventDefault();
-    tttapi.createMessage(this.tokenID, this.userID, myData, this.callback);
+    tttapi.createMessage(this.tokenID, myData, this.callback);
   },
 
   ajaxShowPlonk: function(e,query){
     e.preventDefault();
     tttapi.showPlonk(this.tokenID, this.userID, query, this.callback);
+  },
+
+  ajaxShowAllMessages: function(e){
+    e.preventDefault();
+    tttapi.showAllMessages(this.tokenID, this.callback);
+  },
+
+
+  ajaxDisplayUsersMessages: function(e){
+    e.preventDefault();
+    tttapi.displayUsersMessages(this.tokenID, this.userID, this.callback);
+  },
+
+  ajaxDestoryUsersMessages: function(e){
+    e.preventDefault();
+    tttapi.destoryUsersMessages(this.tokenID, this.userID, this.callback);
   },
 };
 
@@ -296,7 +314,7 @@ var tttapi = {
     }, callback);
   },
 
- createMessage: function (token, id, data, callback) {
+ createMessage: function (token, data, callback) {
     this.ajax({
       method: 'POST',
       url: this.ttt + '/messages',
@@ -313,6 +331,44 @@ var tttapi = {
     this.ajax({
       method: 'GET',
       url: this.ttt + '/plonks' + query,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+    }, callback);
+  },
+
+  showAllMessages: function (token, callback) {
+    this.ajax({
+      method: 'GET',
+      url: this.ttt + '/messages',
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+    }, callback);
+  },
+
+
+  displayUsersMessages: function (token, id, callback) {
+    this.ajax({
+      method: 'GET',
+      url: this.ttt + '/messages/' + id,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+    }, callback);
+  },
+
+
+  destoryUsersMessages: function (token, id, callback) {
+    this.ajax({
+      method: 'DELETE',
+      url: this.ttt + '/messages/' + id,
       headers: {
         Authorization: 'Token token=' + token
       },
