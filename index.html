@@ -110,57 +110,59 @@
       <form>
   </div>
 
-<div class="bs-example">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Vineyard</th>
-                <th>Variety</th>
-                <th>Year</th>
-                <th>Number of Bottles</th>
-                <th>Price</th>
-                <th>Will Trade</th>
-            </tr>
-        </thead>
-        <tbody id="plonk-list">
-            <tr>
-                <td>Gallo</td>
-                <td>Cheap Wine</td>
-                <td>Carter</td>
-                <td>johncarter@mail.com</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Peter</td>
-                <td>Parker</td>
-                <td>peterparker@mail.com</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>John</td>
-                <td>Rambo</td>
-                <td>johnrambo@mail.com</td>
-            </tr>
+  <div class="bs-example">
+      <table class="table table-bordered">
+          <thead>
+              <tr>
+                  <th>Vineyard</th>
+                  <th>Variety</th>
+                  <th>Year</th>
+                  <th>Number of Bottles</th>
+                  <th>Price</th>
+                  <th>Will Trade</th>
+              </tr>
+          </thead>
+          <tbody id="plonk-list">
+                <script id="plonk-index" type="text/x-handlebars-template">
+                  {{#each plonks}}
+                    <tr data-plonk-id="{{id}}">
+                      <td>{{vineyard}}</td>
+                      <td>{{variety}}</td>
+                      <td>{{year}}</td>
+                      <td>{{number_of_bottles}}</td>
+                      <td>{{price}}</td>
+                      <td>{{will_trade}}</td>
+                    </tr>
+                  {{/each}}
+                </script>
+          </tbody>
+      </table>
+  </div>
 
-              <script id="plonk-index" type="text/x-handlebars-template">
-                {{#each plonks}}
-                  <tr data-plonk-id="{{id}}">
-                    <td>{{vineyard}}</td>
-                    <td>{{variety}}</td>
-                    <td>{{year}}</td>
-                    <td>{{number_of_bottles}}</td>
-                    <td>{{price}}</td>
-                    <td>{{will_trade}}</td>
-                  </tr>
-                {{/each}}
-              </script>
-
-
-
-
-        </tbody>
-    </table>
-</div>
+  <div class="bs-example">
+      <table class="table table-bordered">
+          <thead>
+              <tr>
+                  <th>Sender</th>
+                  <th>Recipient</th>
+                  <th>Date/Time</th>
+                  <th>Message</th>
+              </tr>
+          </thead>
+          <tbody id="message-list">
+                <script id="message-index" type="text/x-handlebars-template">
+                  {{#each messages}}
+                    <tr data-message-id="{{id}}">
+                      <td>{{sender_user_name}}</td>
+                      <td>{{receiver_user_name}}</td>
+                      <td>{{created_at}}</td>
+                      <td>{{plonk_message}}</td>
+                    </tr>
+                  {{/each}}
+                </script>
+          </tbody>
+      </table>
+  </div>
 
 
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>

@@ -2,7 +2,7 @@
 
 var externAppsFunctions = externAppsFunctions || {};
 
-var plonkIndexTemplate;
+var plonkIndexTemplate, messageIndexTemplate;
 
 var plonkExtras = {
   tokenID: 0,
@@ -19,19 +19,7 @@ var plonkExtras = {
     var dataStr = JSON.stringify(data, null, 4);
 
     if (data["plonks"]){
-      dataStr = "";
       var plonks = data["plonks"];
-
-      dataStr += "\n" + "vineyard  variety  year  number  price  will trade\n";
-
-      function printPlonk(element, index, array) {
-        dataStr += "\n" + element.vineyard + "    " + element.variety + "    " + element.year +
-            "   " + element.number_of_bottles + "    " + element.price + "    " +
-            element.will_trade;
-
-      }
-
-      plonks.forEach(printPlonk);
 
       var newHTML  = plonkIndexTemplate({plonks: plonks});
       $("#plonk-list").html(newHTML);
@@ -50,6 +38,9 @@ var plonkExtras = {
       }
 
       messages.forEach(printMessages);
+
+      var newHTML  = messageIndexTemplate({messages: messages});
+      $("#message-list").html(newHTML);
     }
 
     $('#result').val(dataStr);
@@ -374,7 +365,7 @@ $(function() {
   });
 
   plonkIndexTemplate = Handlebars.compile($('#plonk-index').html());
-
+  messageIndexTemplate = Handlebars.compile($('#message-index').html());
   externAppsFunctions.initApps();
 });
 
