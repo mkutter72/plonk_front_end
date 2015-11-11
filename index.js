@@ -13,6 +13,8 @@ var plonkExtras = {
       return;
     }
 
+    // var parsedData = JSON.parse(data);
+
     $('#result').val(JSON.stringify(data, null, 4));
   },
 
@@ -68,7 +70,7 @@ var plonkExtras = {
     tttapi.updatePlonk(this.tokenID, plonkID, myData, this.callback);
   },
 
- ajaxCreateMessage: function (e,sender,receiver,mContent){
+ ajaxCreateMessage: function (e,receiver,mContent){
     var myData = {
       "message": {
         "sender_user_name": "",
@@ -111,105 +113,6 @@ var plonkExtras = {
 };
 
 
-
-var gameExtras = {
-  myToken: 0,
-  myGameID: 0,
-  singleMode: true,
-  player: 'X',
-
-
-  callback: function callback(error, data) {
-    if (error) {
-
-      $('#result').val('status: ' + error.status + ', error: ' +error.error);
-      return;
-    }
-
-    $('#result').val(JSON.stringify(data, null, 4));
-  },
-
-  callbackNewGame: function callbackNewGame(error, data) {
-    if (error) {
-      $('#result').val('status: ' + error.status + ', error: ' +error.error);
-      return;
-    }
-
-    gameExtras.myGameID = data.game.id;
-    gameExtras.displayGameID(gameExtras.myGameID);
-    $('#result').val(JSON.stringify(data, null, 4));
-  },
-
- callbackWatchGame: function callbackWatchGame(error, data) {
-    if (error) {
-      $('#result').val('status: ' + error.status + ', error: ' +error.error);
-      return;
-    }
-
-
-    $('#result').val(JSON.stringify(data, null, 4));
-  },
-
-
-  ajaxMarkCell: function(e,index,value){
-   var myData = {
-      "game" : {
-        "cell" : {
-          "index": index,
-          "value": value,}}}
-
-    e.preventDefault();
-    tttapi.markCell(this.myGameID, myData, this.myToken, this.callback);
-  },
-
-  ajaxEndCurentGame: function (e){
-    e.preventDefault();
-    tttapi.endGame(this.myGameID, this.myToken, this.callback);
-  },
-
-  ajaxCreateNewGame: function(e) {
-    e.preventDefault();
-    tttapi.createGame(this.myToken, this.callbackNewGame);
-  },
-
-
-  ajaxJoinGame: function(e)
-  {
-    gameExtras.myGameID = $('.mgIDClass').val();
-    e.preventDefault();
-    tttapi.joinGame(
-    gameExtras.myGameID, this.myToken, this.callback);
-  },
-
-  ajaxWatchGame:  function(e){
-    var gID = $('.mgIDClass').val();
-    e.preventDefault();
-
-    var gameWatcher = tttapi.watchGame(gID, this.myToken);
-
-    gameWatcher.on('change', function(data){
-      var parsedData = JSON.parse(data);
-      if (data.timeout) { //not an error
-        this.gameWatcher.close();
-        return console.warn(data.timeout);
-      }
-      var gameData = parsedData.game;
-      var cell = gameData.cell;
-      gameExtras.otherPlayerMove(cell.index,cell.value);
-
-      $('#watch-index').val(cell.index);
-      $('#watch-value').val(cell.value);
-    });
-    gameWatcher.on('error', function(e){
-      console.error('an error has occured with the stream', e);
-    });
-  },
-
-
-
-
-
-};
 
 
 var tttapi = {
@@ -421,6 +324,8 @@ $(function() {
       }
       callback(null, data);
       $('.token').val(data.user.token);
+
+      // after successful login,  save the token and User ID
       plonkExtras.tokenID = data.user.token;
       plonkExtras.userID = data.user.id;
     };

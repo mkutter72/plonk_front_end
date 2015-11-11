@@ -4,6 +4,8 @@ var externAppsFunctions = externAppsFunctions || {};
 
 var initializeApp = function () {
 
+  // Setup the callbacks for button clicks on the UI
+  // Create User Profile
   $('#profileDone').on('click', function(event) {
     //$('#profile').blur();
 
@@ -13,6 +15,7 @@ var initializeApp = function () {
     });
 
 
+  // Create a new plonk ad
   $('#plonkDone').on('click', function(event) {
     //$('#profile').blur();
 
@@ -21,6 +24,7 @@ var initializeApp = function () {
       $('#willTade').val());
     });
 
+  // Update and existing plonk ad
    $('#plonkEdit').on('click', function(event) {
     //$('#profile').blur();
 
@@ -29,21 +33,25 @@ var initializeApp = function () {
       $('#willTade').val(),$('#plonkID').val());
     });
 
+
+   // Create a message
   $('#messageDone').on('click', function(event) {
     //$('#profile').blur();
 
-    plonkExtras.ajaxCreateMessage(event,$('#sender').val(),$('#receiver').val(),
-      $('#messageContent').val());
+    plonkExtras.ajaxCreateMessage(event,$('#receiver').val(),$('#messageContent').val());
 
-    $('#sender').reset();
+    $('#receiver').val("");
+    $('#messageContent').val("");
     });
 
+  // Show all plonk
   $('#plonkShow').on('click', function(event) {
     //$('#profile').blur();
 
     plonkExtras.ajaxShowPlonk(event, "");
     });
 
+  // Search for plonk based on city or variety
   $('#plonkSearch').on('click', function(event) {
     //$('#profile').blur();
     if ($('#plonkCity').val()) {
@@ -54,6 +62,7 @@ var initializeApp = function () {
       };
     });
 
+  // Show all plonk that belongs to the current user
   $('#plonkShowMine').on('click', function(event) {
 
     plonkExtras.ajaxShowPlonk(event, "?user_id=" + plonkExtras.userID);
@@ -61,27 +70,28 @@ var initializeApp = function () {
     });
 
 
+  // Delete a plonk ad
   $('#plonkDelete').on('click', function(event) {
 
     if ($('#plonkID').val())
       plonkExtras.ajaxDeletePlonk(event, $('#plonkID').val());
     });
 
-
+  // Display mesages that belong to the user
   $('#displayMessages').on('click', function(event) {
     //$('#profile').blur();
 
     plonkExtras.ajaxDisplayUsersMessages(event);
     });
 
-
+  // Show all messages
   $('#showMessages').on('click', function(event) {
     //$('#profile').blur();
 
     plonkExtras.ajaxShowAllMessages(event);
     });
 
-
+  // Delete the messages for the current user
  $('#clearMessages').on('click', function(event) {
     //$('#profile').blur();
 
