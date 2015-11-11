@@ -1,4 +1,5 @@
 # README For The Plonk Exchange
+This README file is for general information and details on the front end of the project.  For the backend README file see:https://github.com/mkutter72/project2-api/blob/master/README.md
 
 ## Background Information on Plonk.  Will be displayed on website
 What is Plonk? Plonk is a non-specific and derogatory term used for wine.
