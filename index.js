@@ -13,9 +13,43 @@ var plonkExtras = {
       return;
     }
 
-    // var parsedData = JSON.parse(data);
+    var dataStr = JSON.stringify(data, null, 4);
 
-    $('#result').val(JSON.stringify(data, null, 4));
+    if (data["plonks"]){
+      dataStr = "";
+      var plonks = data["plonks"];
+
+      dataStr += "\n" + "vineyard  variety  year  number  price  will trade\n";
+
+      function printPlonk(element, index, array) {
+        dataStr += "\n" + element.vineyard + "    " + element.variety + "    " + element.year +
+            "   " + element.number_of_bottles + "    " + element.price + "    " +
+            element.will_trade;
+
+      }
+
+      plonks.forEach(printPlonk);
+
+    }
+
+    if (data["messages"]){
+      dataStr = "";
+      var messages = data["messages"];
+
+      dataStr += "\n" + "sender  receiver   message   date-time \n";
+
+      function printMessages(element, index, array) {
+        dataStr += "\n" + element.sender_user_name + "    " + element.receiver_user_name + "    " + element.plonk_message + "     " + element.created_at;
+
+      }
+
+      messages.forEach(printMessages);
+    }
+
+    $('#result').val(dataStr);
+
+
+
   },
 
   ajaxCreateProfile: function (e,fName,lName,uName,address,city,state,zip){
