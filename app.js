@@ -98,6 +98,13 @@ var initializeApp = function () {
     plonkExtras.ajaxDestoryUsersMessages(event);
     });
 
+
+ $('#plonk-table').on('click', function(event) {
+    var clicked_tr = $(this);
+    $('#plonk-table tr').removeClass("highlight");
+    clicked_tr.addClass('highlight');
+  });
+
 };
 
 // Setup so index.js file can call this
