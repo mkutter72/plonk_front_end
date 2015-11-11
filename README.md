@@ -35,83 +35,6 @@ What is The Plonk Exchange? How many times have you had guests over that bring t
 * As a user I want to be able to search for plonk base on distance from my house
 * As a user I want to be able to create a watch for getting notified if a kind of plonk is posted (could be an additional message from the system rather than another user)
 
-## Table Definitions for Database
-###Tables for User and User Authentication
-These tables, models and routers originate from https://github.com/gaand/project2-api
-
-###Table for Profile
-
-| Column | Type |
-| :----- | :--- |
-| id | INTEGER |
-| first_name | CHARACTER VARYING |
-| last_name | CHARACTER VARYING |
-| street_address | CHARACTER VARYING |
-| city | CHARACTER VARYING |
-| state| CHARACTER VARYING |
-| zip_code| INTEGER |
-| user_name | CHARACTER VARYING, must be unique|
-| foreign key | Reference to User |
-| updated_at | TIMESTAMP WITHOUT TIME ZONE |
-| created_at | TIMESTAMP WITHOUT TIME ZONE |
-
-####Validations and Constraints for Profile
-* user_name, city and zip_code must be filled in
-* user_name must be unique
-
-
-
-###Table for Plonk
-
-| Column | Type |
-| :----- | :--- |
-| id | INTEGER |
-| vineyard | CHARACTER VARYING |
-| variety | CHARACTER VARYING |
-| year | INTEGER |
-| number_of_bottles | INTEGER |
-| city | CHARACTER VARYING |
-| price | DECIMAL |
-| will_trade | BOOLEAN |
-| foreign key | Reference to User |
-| updated_at | TIMESTAMP WITHOUT TIME ZONE |
-| created_at | TIMESTAMP WITHOUT TIME ZONE |
-
-####Validations and Constraints for
-* vineyard, variety, year, number_of_bottles, city, price and will_trade must be filled in
-
-
-###Table for Message
-
-| Column | Type |
-| :----- | :--- |
-| id | INTEGER |
-| sender_user_name | CHARACTER VARYING |
-| receiver_user_name | CHARACTER VARYING |
-| plonk_message| CHARACTER VARYING |
-| foreign key | Reference to User |
-| updated_at | TIMESTAMP WITHOUT TIME ZONE |
-| created_at | TIMESTAMP WITHOUT TIME ZONE |
-
-####Validations and Constraints for Message
-* sender_user_name, receiver_user_name and  plonk_message must be filled in
-
-
-
-###Associations
-* User is the parent of Message.  User has many messages.   A message belongs to a User
-* User is the parent of a Plonk Ad.  User has many Plonk Ads.   A Plonk Ad belongs to a User
-
-
-
-###ActiveRecord operations
-* Finding a particular user by user_name  user = User.find_by(user_name: 'mkutter72')
-* Getting all messages for user     user.messages
-* Creating a new message for user   user.message.create!()
-* Clearing the list of messages - want to delete messages as well - how?
-* Finding Plonk based on city   plonk_list = Plonk.find_by(city: 'Boston')
-* Finding Plonk based on type  plonk_list = Plonk.find_by(type: 'Cabernet')
-* Finding a User to send a message to based on Plonk ad    user = plonk.user.username
 
 ###Workflow Planning
 * Define user stories
@@ -127,4 +50,4 @@ These tables, models and routers originate from https://github.com/gaand/project
 * Work on Phase II tasks
 
 
-Authorization and Authentication
+
