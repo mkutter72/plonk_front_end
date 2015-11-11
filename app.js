@@ -105,6 +105,37 @@ var initializeApp = function () {
     clicked_tr.addClass('highlight');
   });
 
+  function allTabsNonActive (){
+    $('#login-li').removeClass('active');
+    $('#profile-li').removeClass('active');
+    $('#browse-li').removeClass('active');
+    $('#plonk-li').removeClass('active');
+    $('#message-li').removeClass('active');
+    $('#register-li').removeClass('active');
+
+    $(".form-signin").hide();
+    $(".form-register").hide();
+    $(".form-profile").hide();
+  }
+
+  $('#profile-tab').on('click', function(event) {
+      allTabsNonActive();
+      $('#profile-li').addClass('active');
+      $(".form-profile").show();
+  });
+
+  $('#login-tab').on('click', function(event) {
+      allTabsNonActive();
+      $('#login-li').addClass('active');
+      $(".form-signin").show();
+  });
+
+  $('#register-tab').on('click', function(event) {
+      allTabsNonActive();
+      $('#register-li').addClass('active');
+      $(".form-register").show();
+  });
+
 };
 
 // Setup so index.js file can call this

@@ -21,8 +21,8 @@ var plonkExtras = {
     if (data["plonks"]){
       var plonks = data["plonks"];
 
-      var newHTML  = plonkIndexTemplate({plonks: plonks});
-      $("#plonk-list").html(newHTML);
+      // var newHTML  = plonkIndexTemplate({plonks: plonks});
+      // $("#plonk-list").html(newHTML);
 
     }
 
@@ -39,8 +39,8 @@ var plonkExtras = {
 
       messages.forEach(printMessages);
 
-      var newHTML  = messageIndexTemplate({messages: messages});
-      $("#message-list").html(newHTML);
+      // var newHTML  = messageIndexTemplate({messages: messages});
+      // $("#message-list").html(newHTML);
     }
 
     $('#result').val(dataStr);
@@ -364,8 +364,8 @@ $(function() {
     tttapi.login(credentials, cb);
   });
 
-  plonkIndexTemplate = Handlebars.compile($('#plonk-index').html());
-  messageIndexTemplate = Handlebars.compile($('#message-index').html());
+  // plonkIndexTemplate = Handlebars.compile($('#plonk-index').html());
+  // messageIndexTemplate = Handlebars.compile($('#message-index').html());
   externAppsFunctions.initApps();
 });
 
