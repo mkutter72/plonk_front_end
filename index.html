@@ -5,6 +5,19 @@
 
   <link rel="stylesheet" type="text/css" href="style.css">
 
+<meta charset="UTF-8">
+<title>Example of Bootstrap 3 Tables with Alternate Background</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+    .bs-example{
+      margin: 20px;
+    }
+</style>
+
+
 </head>
 <body>
   <h1>Plonk test page</h1>
@@ -97,12 +110,63 @@
       <form>
   </div>
 
+<div class="bs-example">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Vineyard</th>
+                <th>Variety</th>
+                <th>Year</th>
+                <th>Number of Bottles</th>
+                <th>Price</th>
+                <th>Will Trade</th>
+            </tr>
+        </thead>
+        <tbody id="plonk-list">
+            <tr>
+                <td>Gallo</td>
+                <td>Cheap Wine</td>
+                <td>Carter</td>
+                <td>johncarter@mail.com</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Peter</td>
+                <td>Parker</td>
+                <td>peterparker@mail.com</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>John</td>
+                <td>Rambo</td>
+                <td>johnrambo@mail.com</td>
+            </tr>
 
+              <script id="plonk-index" type="text/x-handlebars-template">
+                {{#each plonks}}
+                  <tr data-plonk-id="{{id}}">
+                    <td>{{vineyard}}</td>
+                    <td>{{variety}}</td>
+                    <td>{{year}}</td>
+                    <td>{{number_of_bottles}}</td>
+                    <td>{{price}}</td>
+                    <td>{{will_trade}}</td>
+                  </tr>
+                {{/each}}
+              </script>
+
+
+
+
+        </tbody>
+    </table>
+</div>
 
 
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="http://ttt.wdibos.com/js/resource-watcher-0.1.0.js" defer charset="utf-8"></script>
  <script type="text/javascript" src="index.js" defer charset="utf-8"></script>
 <script src="app.js" type="application/javascript" charset="utf-8" defer></script>
+    <script type="text/javascript" src="assets/handlebars-v3.0.3.js"></script>
 
 </body>

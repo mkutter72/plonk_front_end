@@ -2,9 +2,12 @@
 
 var externAppsFunctions = externAppsFunctions || {};
 
+var plonkIndexTemplate;
+
 var plonkExtras = {
   tokenID: 0,
   userID: 0,
+
 
   callback: function callback(error, data) {
     if (error) {
@@ -29,6 +32,9 @@ var plonkExtras = {
       }
 
       plonks.forEach(printPlonk);
+
+      var newHTML  = plonkIndexTemplate({plonks: plonks});
+      $("#plonk-list").html(newHTML);
 
     }
 
@@ -367,6 +373,7 @@ $(function() {
     tttapi.login(credentials, cb);
   });
 
+  plonkIndexTemplate = Handlebars.compile($('#plonk-index').html());
 
   externAppsFunctions.initApps();
 });
