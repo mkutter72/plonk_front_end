@@ -43,12 +43,13 @@ var plonkExtras = {
         "year": year,
         "number_of_bottles": numBottles,
         "price": price,
-        "will_trade": willTrade
+        "will_trade": willTrade,
+        "user_id" : this.userID
         }
       }
 
     e.preventDefault();
-    tttapi.createPlonk(this.tokenID, this.userID, myData, this.callback);
+    tttapi.createPlonk(this.tokenID, myData, this.callback);
   },
 
   ajaxUpdatePlonk: function (e,vYard,variety,year,numBottles,price,willTrade, plonkID){
@@ -323,7 +324,7 @@ var tttapi = {
     }, callback);
   },
 
-  createPlonk: function (token, id, data, callback) {
+  createPlonk: function (token, data, callback) {
     this.ajax({
       method: 'POST',
       url: this.ttt + '/plonks',
