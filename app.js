@@ -16,11 +16,15 @@ var  allTabsNonActive =function (){
     $(".form-profile").hide();
     $(".form-message").hide();
     $(".form-plonk").hide();
+    $(".form-browse").hide();
+    $(".form-browse-table").hide();
   };
 
 var goToBrowseTab = function() {
   allTabsNonActive();
   $('#browse-li').addClass('active');
+  $(".form-browse").show();
+  $(".form-browse-table").show();
 };
 
 var goToLoginTab = function() {
@@ -71,21 +75,24 @@ var initializeApp = function () {
     });
 
   // Show all plonk
-  $('#plonkShow').on('click', function(event) {
+  $('#showPlonkButton').on('click', function(event) {
     //$('#profile').blur();
 
     plonkExtras.ajaxShowPlonk(event, "");
     });
 
   // Search for plonk based on city or variety
-  $('#plonkSearch').on('click', function(event) {
+  $('#searchPlonkButton').on('click', function(event) {
     //$('#profile').blur();
-    if ($('#plonkCity').val()) {
-      plonkExtras.ajaxShowPlonk(event, "?city=" + $('#plonkCity').val());
+    if ($('#inputPlonkCity').val()) {
+      plonkExtras.ajaxShowPlonk(event, "?city=" + $('#inputPlonkCity').val());
       };
-    if ($('#plonkVariety').val()) {
-      plonkExtras.ajaxShowPlonk(event, "?variety=" + $('#plonkVariety').val());
+    if ($('#inputPlonkType').val()) {
+      plonkExtras.ajaxShowPlonk(event, "?variety=" + $('#inputPlonkType').val());
       };
+
+    $('#inputPlonkType').val("");
+    $('#inputPlonkCity').val("");
     });
 
   // Show all plonk that belongs to the current user

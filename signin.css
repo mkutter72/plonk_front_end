@@ -180,3 +180,40 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+
+.form-browse {
+  max-width: 300px;
+  padding: 15px;
+  margin: 0 auto;
+  display: none;
+}
+.form-browse .form-signin-heading,
+.form-browse .checkbox {
+  margin-bottom: 10px;
+}
+.form-browse .checkbox {
+  font-weight: normal;
+}
+.form-browse .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-browse .form-control:focus {
+  z-index: 2;
+}
+.form-browse input[id="inputType"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+.form-browse-table {
+  display: none;
+}

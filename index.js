@@ -21,8 +21,8 @@ var plonkExtras = {
     if (data["plonks"]){
       var plonks = data["plonks"];
 
-      // var newHTML  = plonkIndexTemplate({plonks: plonks});
-      // $("#plonk-list").html(newHTML);
+      var newHTML  = plonkIndexTemplate({plonks: plonks});
+      $("#plonk-list").html(newHTML);
 
     }
 
@@ -377,7 +377,7 @@ $(function() {
     tttapi.login(credentials, cb);
   });
 
-  // plonkIndexTemplate = Handlebars.compile($('#plonk-index').html());
+  plonkIndexTemplate = Handlebars.compile($('#plonk-index').html());
   // messageIndexTemplate = Handlebars.compile($('#message-index').html());
   externAppsFunctions.initApps();
 });

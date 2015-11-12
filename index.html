@@ -7,9 +7,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
 
-    <title>Navbar Template for Bootstrap</title>
+    <title>Plonk Exchange</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/Bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -170,6 +170,49 @@
       </form>
   </div> <!-- /container -->
 
+  <div class="container">
+      <form class="form-browse">
+        <h2 class="form-browse-heading">Browse Plonk</h2>
+
+        <label for="inputPlonkCity" class="sr-only">Vineyard</label>
+        <input type="text" id="inputPlonkCity" class="form-control" placeholder="City" required autofocus>
+
+        <label for="inputPlonkType" class="sr-only">Variety</label>
+        <input type="text" id="inputPlonkType" class="form-control" placeholder="Wine Type" required autofocus>
+
+        <button id = "searchPlonkButton" class="btn btn-lg btn-primary" type="submit">Search</button>
+        <button id = "showPlonkButton" class="btn btn-lg btn-primary" type="submit">Show All</button>
+      </form>
+
+      <form class="form-browse-table">
+       <table class="table table-bordered" id="plonk-table">
+            <thead>
+                <tr>
+                    <th>Vineyard</th>
+                    <th>Variety</th>
+                    <th>Year</th>
+                    <th>Number of Bottles</th>
+                    <th>Price</th>
+                    <th>Will Trade</th>
+                </tr>
+            </thead>
+            <tbody id="plonk-list">
+                  <script id="plonk-index" type="text/x-handlebars-template">
+                    {{#each plonks}}
+                      <tr data-plonk-id="{{id}}">
+                        <td>{{vineyard}}</td>
+                        <td>{{variety}}</td>
+                        <td>{{year}}</td>
+                        <td>{{number_of_bottles}}</td>
+                        <td>{{price}}</td>
+                        <td>{{will_trade}}</td>
+                      </tr>
+                    {{/each}}
+                  </script>
+            </tbody>
+        </table>
+      </form>
+  </div> <!-- /container -->
 
 
     <!-- Bootstrap core JavaScript
