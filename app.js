@@ -19,6 +19,7 @@ var  allTabsNonActive =function (){
     $(".form-browse").hide();
     $(".form-browse-table").hide();
     $(".form-message-table").hide();
+    $(".form-plonkShowMine").hide();
   };
 
 var goToBrowseTab = function() {
@@ -34,13 +35,31 @@ var goToLoginTab = function() {
   $(".form-signin").show();
 };
 
+var updatePlonkAdInfo = function(data) {
+  $('#inputVyard').val(data["vineyard"]);
+  $('#inputVariety').val(data["variety"]);
+  $('#inputYear').val(data["year"]);
+  $('#inputNumBottles').val(data["number_of_bottles"]);
+  $('#inputPrice').val(data["price"]);
+  $('#inputTrade').val(data["will_trade"]);
+};
+
 var initializeApp = function () {
+
+    var editPlonkID = -1;
+
+    var clearPlonkAd = function (){
+      $('#inputVyard').val("");
+      $('#inputVariety').val("");
+      $('#inputYear').val("");
+      $('#inputNumBottles').val("");
+      $('#inputPrice').val("");
+      $('#inputTrade').val("");
+    };
 
   // Setup the callbacks for button clicks on the UI
   // Create User Profile
   $('#profileButton').on('click', function(event) {
-    //$('#profile').blur();
-
     plonkExtras.ajaxCreateProfile(event,$('#inputFname').val(),$('#inputLname').val(),
       $('#inputUname').val(),$('#inputAddress').val(),$('#inputCity').val(),
       $('#inputState').val(),$('#inputZip').val());
@@ -49,27 +68,35 @@ var initializeApp = function () {
 
   // Create a new plonk ad
   $('#plonkButton').on('click', function(event) {
-    //$('#profile').blur();
-
     plonkExtras.ajaxCreatePlonk(event,$('#inputVyard').val(),$('#inputVariety').val(),
       $('#inputYear').val(),$('#inputNumBottles').val(),$('#inputPrice').val(),
       $('#inputTrade').val());
+
+      clearPlonkAd();
     });
 
-  // Update and existing plonk ad
-   $('#plonkEdit').on('click', function(event) {
-    //$('#profile').blur();
+  // Find a single plonk
+   $('#plonkFindButton').on('click', function(event) {
+    editPlonkID = $('#inputPlonkID').val();
+    plonkExtras.ajaxGetOnePlonk(event,editPlonkID);
+    $('#inputPlonkID').val("");
+    });
 
-    plonkExtras.ajaxUpdatePlonk(event,$('#vineyard').val(),$('#variety').val(),
-      $('#year').val(),$('#numBottles').val(),$('#price').val(),
-      $('#willTade').val(),$('#plonkID').val());
+  // Update an existing plonk ad
+   $('#plonkSaveButton').on('click', function(event) {
+    if (editPlonkID > 0) {
+        plonkExtras.ajaxUpdatePlonk(event,$('#inputVyard').val(),$('#inputVariety').val(),
+          $('#inputYear').val(),$('#inputNumBottles').val(),$('#inputPrice').val(),
+          $('#inputTrade').val(),editPlonkID);
+
+        clearPlonkAd();
+        editPlonkID = -1;
+      };
     });
 
 
    // Create a message
   $('#messageButton').on('click', function(event) {
-    //$('#profile').blur();
-
     plonkExtras.ajaxCreateMessage(event,"",$('#inputReceiver').val(),$('#inputMessage').val());
     plonkExtras.ajaxCreateMessage(event,"copy",$('#inputReceiver').val(),$('#inputMessage').val());
     $('#inputReceiver').val("");
@@ -78,14 +105,11 @@ var initializeApp = function () {
 
   // Show all plonk
   $('#showPlonkButton').on('click', function(event) {
-    //$('#profile').blur();
-
     plonkExtras.ajaxShowPlonk(event, "");
     });
 
   // Search for plonk based on city or variety
   $('#searchPlonkButton').on('click', function(event) {
-    //$('#profile').blur();
     if ($('#inputPlonkCity').val()) {
       plonkExtras.ajaxShowPlonk(event, "?city=" + $('#inputPlonkCity').val());
       };
@@ -99,15 +123,12 @@ var initializeApp = function () {
 
   // Show all plonk that belongs to the current user
   $('#plonkShowMineButton').on('click', function(event) {
-
     plonkExtras.ajaxShowPlonk(event, "?user_id=" + plonkExtras.userID);
-
     });
 
 
   // Delete a plonk ad
   $('#plonkDeleteButton').on('click', function(event) {
-
     if ($('#inputPlonkID').val())
       plonkExtras.ajaxDeletePlonk(event, $('#inputPlonkID').val());
 
@@ -132,8 +153,6 @@ var initializeApp = function () {
 
   // Delete the messages for the current user
  $('#clearMessagesButton').on('click', function(event) {
-    //$('#profile').blur();
-
     plonkExtras.ajaxDestoryUsersMessages(event);
     plonkExtras.clearMessages();
     });
@@ -145,7 +164,6 @@ var initializeApp = function () {
     $('#plonk-table tr').removeClass("highlight");
     clicked_tr.addClass('highlight');
   });
-
 
 
   $('#profile-tab').on('click', function(event) {
@@ -165,20 +183,24 @@ var initializeApp = function () {
   });
 
   $('#browse-tab').on('click', function(event) {
-      goToBrowseTab();
+    plonkExtras.clearPlonks();
+    goToBrowseTab();
     });
 
   $('#plonk-tab').on('click', function(event) {
     allTabsNonActive();
     $('#plonk-li').addClass('active');
     $(".form-plonk").show();
+    plonkExtras.clearPlonks();
     $(".form-browse-table").show();
+     $(".form-plonkShowMine").show();
   });
 
  $('#message-tab').on('click', function(event) {
     allTabsNonActive();
     $('#message-li').addClass('active');
     $(".form-message").show();
+    plonkExtras.clearMessages();
     $(".form-message-table").show();
   });
 
@@ -188,3 +210,4 @@ var initializeApp = function () {
 externAppsFunctions['initApps'] = initializeApp;
 externAppsFunctions['loginComplete'] = goToBrowseTab;
 externAppsFunctions['registerComplete'] = goToLoginTab;
+externAppsFunctions['onePlonkReturned'] = updatePlonkAdInfo;

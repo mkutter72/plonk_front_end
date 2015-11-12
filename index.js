@@ -17,6 +17,7 @@ var plonkExtras = {
       return;
     }
 
+    // keeping this around just incase I need to turn back on displaying all returns from DB
     var dataStr = JSON.stringify(data, null, 4);
 
     if (data["plonks"]){
@@ -28,17 +29,7 @@ var plonkExtras = {
     }
 
     if (data["messages"]){
-      dataStr = "";
       var messages = data["messages"];
-
-      dataStr += "\n" + "sender  receiver   message   date-time \n";
-
-      function printMessages(element, index, array) {
-        dataStr += "\n" + element.sender_user_name + "    " + element.receiver_user_name + "    " + element.plonk_message + "     " + element.created_at;
-
-      }
-
-      messages.forEach(printMessages);
 
       var newHTML  = messageIndexTemplate({messages: messages});
       $("#message-list").html(newHTML);
@@ -47,9 +38,19 @@ var plonkExtras = {
      if (data["street_address"]){
          externAppsFunctions.loginComplete();
     }
-
-    $('#result').val(dataStr);
   },
+
+
+  callbackGetOnePlonk: function callbackGetOnePlonk(error, data) {
+    if (error) {
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+
+     externAppsFunctions.onePlonkReturned(data);
+  },
+
+
 
   ajaxCreateProfile: function (e,fName,lName,uName,address,city,state,zip){
     var myData = {
@@ -123,6 +124,11 @@ var plonkExtras = {
     tttapi.showPlonk(this.tokenID, this.userID, query, this.callback);
   },
 
+  ajaxGetOnePlonk: function(e, plonkID){
+    e.preventDefault();
+    tttapi.getOnePlonk(this.tokenID, plonkID, this.callbackGetOnePlonk);
+  },
+
   ajaxShowAllMessages: function(e){
     e.preventDefault();
     tttapi.showAllMessages(this.tokenID, this.callback);
@@ -148,6 +154,11 @@ var plonkExtras = {
   clearMessages: function () {
       var newHTML  = messageIndexTemplate({messages: []});
       $("#message-list").html(newHTML);
+  },
+
+  clearPlonks: function () {
+      var newHTML  = plonkIndexTemplate({messages: []});
+      $("#plonk-list").html(newHTML);
   }
 };
 
@@ -243,6 +254,18 @@ var tttapi = {
     this.ajax({
       method: 'GET',
       url: this.ttt + '/plonks' + query,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+    }, callback);
+  },
+
+  getOnePlonk: function (token, id,callback) {
+    this.ajax({
+      method: 'GET',
+      url: this.ttt + '/plonks/' + id,
       headers: {
         Authorization: 'Token token=' + token
       },
