@@ -62,12 +62,12 @@ var initializeApp = function () {
 
 
    // Create a message
-  $('#messageDone').on('click', function(event) {
+  $('#messageButton').on('click', function(event) {
     //$('#profile').blur();
 
-    plonkExtras.ajaxCreateMessage(event,$('#receiver').val(),$('#messageContent').val());
-
-
+    plonkExtras.ajaxCreateMessage(event,$('#inputReceiver').val(),$('#inputMessage').val());
+    $('#inputReceiver').val("");
+    $('#inputMessage').val("")
     });
 
   // Show all plonk
@@ -125,6 +125,7 @@ var initializeApp = function () {
     });
 
 
+ // this doesn't work
  $('#plonk-table').on('click', function(event) {
     var clicked_tr = $(this);
     $('#plonk-table tr').removeClass("highlight");
