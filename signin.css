@@ -108,3 +108,75 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+
+
+
+.form-plonk {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  display: none;
+}
+.form-plonk .form-signin-heading,
+.form-plonk .checkbox {
+  margin-bottom: 10px;
+}
+.form-plonk .checkbox {
+  font-weight: normal;
+}
+.form-plonk .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-plonk .form-control:focus {
+  z-index: 2;
+}
+.form-plonk input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-plonk input[id="inputTrade"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+
+.form-message {
+  max-width: 500px;
+  padding: 15px;
+  margin: 0 auto;
+  display: none;
+}
+.form-message .form-signin-heading,
+.form-message .checkbox {
+  margin-bottom: 10px;
+}
+.form-message .checkbox {
+  font-weight: normal;
+}
+.form-message .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-message .form-control:focus {
+  z-index: 2;
+}
+.form-message input[id="inputMessage"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

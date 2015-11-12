@@ -14,6 +14,8 @@ var  allTabsNonActive =function (){
     $(".form-signin").hide();
     $(".form-register").hide();
     $(".form-profile").hide();
+    $(".form-message").hide();
+    $(".form-plonk").hide();
   };
 
 var goToBrowseTab = function() {
@@ -41,12 +43,12 @@ var initializeApp = function () {
 
 
   // Create a new plonk ad
-  $('#plonkDone').on('click', function(event) {
+  $('#plonkButton').on('click', function(event) {
     //$('#profile').blur();
 
-    plonkExtras.ajaxCreatePlonk(event,$('#vineyard').val(),$('#variety').val(),
-      $('#year').val(),$('#numBottles').val(),$('#price').val(),
-      $('#willTade').val());
+    plonkExtras.ajaxCreatePlonk(event,$('#inputVyard').val(),$('#inputVariety').val(),
+      $('#inputYear').val(),$('#inputNumBottles').val(),$('#inputPrice').val(),
+      $('#inputTrade').val());
     });
 
   // Update and existing plonk ad
@@ -65,8 +67,7 @@ var initializeApp = function () {
 
     plonkExtras.ajaxCreateMessage(event,$('#receiver').val(),$('#messageContent').val());
 
-    $('#receiver').val("");
-    $('#messageContent').val("");
+
     });
 
   // Show all plonk
@@ -148,9 +149,22 @@ var initializeApp = function () {
     $(".form-register").show();
   });
 
- $('#browse-tab').on('click', function(event) {
-    goToBrowseTab();
+  $('#browse-tab').on('click', function(event) {
+      goToBrowseTab();
+    });
+
+  $('#plonk-tab').on('click', function(event) {
+    allTabsNonActive();
+    $('#plonk-li').addClass('active');
+    $(".form-plonk").show();
   });
+
+ $('#message-tab').on('click', function(event) {
+    allTabsNonActive();
+    $('#message-li').addClass('active');
+    $(".form-message").show();
+  });
+
 };
 
 // Setup so index.js file can call this
