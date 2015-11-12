@@ -4,6 +4,7 @@ var externAppsFunctions = externAppsFunctions || {};
 
 var plonkIndexTemplate, messageIndexTemplate;
 
+
 var plonkExtras = {
   tokenID: 0,
   userID: 0,
@@ -48,9 +49,6 @@ var plonkExtras = {
     }
 
     $('#result').val(dataStr);
-
-
-
   },
 
   ajaxCreateProfile: function (e,fName,lName,uName,address,city,state,zip){
@@ -105,10 +103,11 @@ var plonkExtras = {
     tttapi.updatePlonk(this.tokenID, plonkID, myData, this.callback);
   },
 
- ajaxCreateMessage: function (e,receiver,mContent){
+ ajaxCreateMessage: function (e,copy,receiver,mContent){
     var myData = {
       "message": {
-        "sender_user_name": "",
+        "sender_user_name": copy,  // using this as flag to indicate to controller
+                                    // to make a copy of this message for the receiver
         "receiver_user_name": receiver,
         "plonk_message": mContent,
         "user_id": this.userID
@@ -145,6 +144,11 @@ var plonkExtras = {
     tttapi.destoryPlonk(this.tokenID, id, this.callback);
   },
 
+
+  clearMessages: function () {
+      var newHTML  = messageIndexTemplate({messages: []});
+      $("#message-list").html(newHTML);
+  }
 };
 
 

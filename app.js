@@ -70,7 +70,8 @@ var initializeApp = function () {
   $('#messageButton').on('click', function(event) {
     //$('#profile').blur();
 
-    plonkExtras.ajaxCreateMessage(event,$('#inputReceiver').val(),$('#inputMessage').val());
+    plonkExtras.ajaxCreateMessage(event,"",$('#inputReceiver').val(),$('#inputMessage').val());
+    plonkExtras.ajaxCreateMessage(event,"copy",$('#inputReceiver').val(),$('#inputMessage').val());
     $('#inputReceiver').val("");
     $('#inputMessage').val("")
     });
@@ -114,24 +115,27 @@ var initializeApp = function () {
     });
 
   // Display mesages that belong to the user
-  $('#displayMessages').on('click', function(event) {
+  $('#showMessagesButton').on('click', function(event) {
     //$('#profile').blur();
 
     plonkExtras.ajaxDisplayUsersMessages(event);
     });
 
-  // Show all messages
+  // Show all messages - not used
+  /*
   $('#showMessagesButton').on('click', function(event) {
     //$('#profile').blur();
 
     plonkExtras.ajaxShowAllMessages(event);
     });
+  */
 
   // Delete the messages for the current user
  $('#clearMessagesButton').on('click', function(event) {
     //$('#profile').blur();
 
     plonkExtras.ajaxDestoryUsersMessages(event);
+    plonkExtras.clearMessages();
     });
 
 
