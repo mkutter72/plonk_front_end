@@ -2,103 +2,212 @@
 
 var externAppsFunctions = externAppsFunctions || {};
 
+
+var  allTabsNonActive =function (){
+    $('#login-li').removeClass('active');
+    $('#profile-li').removeClass('active');
+    $('#browse-li').removeClass('active');
+    $('#plonk-li').removeClass('active');
+    $('#message-li').removeClass('active');
+    $('#register-li').removeClass('active');
+
+    $(".form-signin").hide();
+    $(".form-register").hide();
+    $(".form-profile").hide();
+    $(".form-message").hide();
+    $(".form-plonk").hide();
+    $(".form-browse").hide();
+    $(".form-browse-table").hide();
+    $(".form-message-table").hide();
+    $(".form-plonkShowMine").hide();
+  };
+
+var goToBrowseTab = function() {
+  allTabsNonActive();
+  $('#browse-li').addClass('active');
+  $(".form-browse").show();
+  $(".form-browse-table").show();
+};
+
+var goToLoginTab = function() {
+  allTabsNonActive();
+  $('#login-li').addClass('active');
+  $(".form-signin").show();
+};
+
+var updatePlonkAdInfo = function(data) {
+  $('#inputVyard').val(data["vineyard"]);
+  $('#inputVariety').val(data["variety"]);
+  $('#inputYear').val(data["year"]);
+  $('#inputNumBottles').val(data["number_of_bottles"]);
+  $('#inputPrice').val(data["price"]);
+  $('#inputTrade').val(data["will_trade"]);
+};
+
 var initializeApp = function () {
+
+    var editPlonkID = -1;
+
+    var clearPlonkAd = function (){
+      $('#inputVyard').val("");
+      $('#inputVariety').val("");
+      $('#inputYear').val("");
+      $('#inputNumBottles').val("");
+      $('#inputPrice').val("");
+      $('#inputTrade').val("");
+    };
 
   // Setup the callbacks for button clicks on the UI
   // Create User Profile
-  $('#profileDone').on('click', function(event) {
-    //$('#profile').blur();
-
-    plonkExtras.ajaxCreateProfile(event,$('#firstName').val(),$('#lastName').val(),
-      $('#userName').val(),$('#address').val(),$('#city').val(),
-      $('#state').val(),$('#zipCode').val());
+  $('#profileButton').on('click', function(event) {
+    plonkExtras.ajaxCreateProfile(event,$('#inputFname').val(),$('#inputLname').val(),
+      $('#inputUname').val(),$('#inputAddress').val(),$('#inputCity').val(),
+      $('#inputState').val(),$('#inputZip').val());
     });
 
 
   // Create a new plonk ad
-  $('#plonkDone').on('click', function(event) {
-    //$('#profile').blur();
+  $('#plonkButton').on('click', function(event) {
+    plonkExtras.ajaxCreatePlonk(event,$('#inputVyard').val(),$('#inputVariety').val(),
+      $('#inputYear').val(),$('#inputNumBottles').val(),$('#inputPrice').val(),
+      $('#inputTrade').val());
 
-    plonkExtras.ajaxCreatePlonk(event,$('#vineyard').val(),$('#variety').val(),
-      $('#year').val(),$('#numBottles').val(),$('#price').val(),
-      $('#willTade').val());
+      clearPlonkAd();
     });
 
-  // Update and existing plonk ad
-   $('#plonkEdit').on('click', function(event) {
-    //$('#profile').blur();
+  // Find a single plonk
+   $('#plonkFindButton').on('click', function(event) {
+    editPlonkID = $('#inputPlonkID').val();
+    plonkExtras.ajaxGetOnePlonk(event,editPlonkID);
+    $('#inputPlonkID').val("");
+    });
 
-    plonkExtras.ajaxUpdatePlonk(event,$('#vineyard').val(),$('#variety').val(),
-      $('#year').val(),$('#numBottles').val(),$('#price').val(),
-      $('#willTade').val(),$('#plonkID').val());
+  // Update an existing plonk ad
+   $('#plonkSaveButton').on('click', function(event) {
+    if (editPlonkID > 0) {
+        plonkExtras.ajaxUpdatePlonk(event,$('#inputVyard').val(),$('#inputVariety').val(),
+          $('#inputYear').val(),$('#inputNumBottles').val(),$('#inputPrice').val(),
+          $('#inputTrade').val(),editPlonkID);
+
+        clearPlonkAd();
+        editPlonkID = -1;
+      };
     });
 
 
    // Create a message
-  $('#messageDone').on('click', function(event) {
-    //$('#profile').blur();
-
-    plonkExtras.ajaxCreateMessage(event,$('#receiver').val(),$('#messageContent').val());
-
-    $('#receiver').val("");
-    $('#messageContent').val("");
+  $('#messageButton').on('click', function(event) {
+    plonkExtras.ajaxCreateMessage(event,"",$('#inputReceiver').val(),$('#inputMessage').val());
+    plonkExtras.ajaxCreateMessage(event,"copy",$('#inputReceiver').val(),$('#inputMessage').val());
+    $('#inputReceiver').val("");
+    $('#inputMessage').val("")
     });
 
   // Show all plonk
-  $('#plonkShow').on('click', function(event) {
-    //$('#profile').blur();
-
+  $('#showPlonkButton').on('click', function(event) {
     plonkExtras.ajaxShowPlonk(event, "");
     });
 
   // Search for plonk based on city or variety
-  $('#plonkSearch').on('click', function(event) {
-    //$('#profile').blur();
-    if ($('#plonkCity').val()) {
-      plonkExtras.ajaxShowPlonk(event, "?city=" + $('#plonkCity').val());
+  $('#searchPlonkButton').on('click', function(event) {
+    if ($('#inputPlonkCity').val()) {
+      plonkExtras.ajaxShowPlonk(event, "?city=" + $('#inputPlonkCity').val());
       };
-    if ($('#plonkVariety').val()) {
-      plonkExtras.ajaxShowPlonk(event, "?variety=" + $('#plonkVariety').val());
+    if ($('#inputPlonkType').val()) {
+      plonkExtras.ajaxShowPlonk(event, "?variety=" + $('#inputPlonkType').val());
       };
+
+    $('#inputPlonkType').val("");
+    $('#inputPlonkCity').val("");
     });
 
   // Show all plonk that belongs to the current user
-  $('#plonkShowMine').on('click', function(event) {
-
+  $('#plonkShowMineButton').on('click', function(event) {
     plonkExtras.ajaxShowPlonk(event, "?user_id=" + plonkExtras.userID);
-
     });
 
 
   // Delete a plonk ad
-  $('#plonkDelete').on('click', function(event) {
+  $('#plonkDeleteButton').on('click', function(event) {
+    if ($('#inputPlonkID').val())
+      plonkExtras.ajaxDeletePlonk(event, $('#inputPlonkID').val());
 
-    if ($('#plonkID').val())
-      plonkExtras.ajaxDeletePlonk(event, $('#plonkID').val());
+    $('#inputPlonkID').val("")
     });
 
   // Display mesages that belong to the user
-  $('#displayMessages').on('click', function(event) {
+  $('#showMessagesButton').on('click', function(event) {
     //$('#profile').blur();
 
     plonkExtras.ajaxDisplayUsersMessages(event);
     });
 
-  // Show all messages
-  $('#showMessages').on('click', function(event) {
+  // Show all messages - not used
+  /*
+  $('#showMessagesButton').on('click', function(event) {
     //$('#profile').blur();
 
     plonkExtras.ajaxShowAllMessages(event);
     });
+  */
 
   // Delete the messages for the current user
- $('#clearMessages').on('click', function(event) {
-    //$('#profile').blur();
-
+ $('#clearMessagesButton').on('click', function(event) {
     plonkExtras.ajaxDestoryUsersMessages(event);
+    plonkExtras.clearMessages();
     });
+
+
+ // this doesn't work
+ $('#plonk-table').on('click', function(event) {
+    var clicked_tr = $(this);
+    $('#plonk-table tr').removeClass("highlight");
+    clicked_tr.addClass('highlight');
+  });
+
+
+  $('#profile-tab').on('click', function(event) {
+    allTabsNonActive();
+    $('#profile-li').addClass('active');
+    $(".form-profile").show();
+  });
+
+  $('#login-tab').on('click', function(event) {
+    goToLoginTab();
+  });
+
+  $('#register-tab').on('click', function(event) {
+    allTabsNonActive();
+    $('#register-li').addClass('active');
+    $(".form-register").show();
+  });
+
+  $('#browse-tab').on('click', function(event) {
+    plonkExtras.clearPlonks();
+    goToBrowseTab();
+    });
+
+  $('#plonk-tab').on('click', function(event) {
+    allTabsNonActive();
+    $('#plonk-li').addClass('active');
+    $(".form-plonk").show();
+    plonkExtras.clearPlonks();
+    $(".form-browse-table").show();
+     $(".form-plonkShowMine").show();
+  });
+
+ $('#message-tab').on('click', function(event) {
+    allTabsNonActive();
+    $('#message-li').addClass('active');
+    $(".form-message").show();
+    plonkExtras.clearMessages();
+    $(".form-message-table").show();
+  });
 
 };
 
 // Setup so index.js file can call this
 externAppsFunctions['initApps'] = initializeApp;
+externAppsFunctions['loginComplete'] = goToBrowseTab;
+externAppsFunctions['registerComplete'] = goToLoginTab;
+externAppsFunctions['onePlonkReturned'] = updatePlonkAdInfo;

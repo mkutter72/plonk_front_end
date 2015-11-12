@@ -2,9 +2,13 @@
 
 var externAppsFunctions = externAppsFunctions || {};
 
+var plonkIndexTemplate, messageIndexTemplate;
+
+
 var plonkExtras = {
   tokenID: 0,
   userID: 0,
+
 
   callback: function callback(error, data) {
     if (error) {
@@ -13,10 +17,40 @@ var plonkExtras = {
       return;
     }
 
-    // var parsedData = JSON.parse(data);
+    // keeping this around just incase I need to turn back on displaying all returns from DB
+    var dataStr = JSON.stringify(data, null, 4);
 
-    $('#result').val(JSON.stringify(data, null, 4));
+    if (data["plonks"]){
+      var plonks = data["plonks"];
+
+      var newHTML  = plonkIndexTemplate({plonks: plonks});
+      $("#plonk-list").html(newHTML);
+
+    }
+
+    if (data["messages"]){
+      var messages = data["messages"];
+
+      var newHTML  = messageIndexTemplate({messages: messages});
+      $("#message-list").html(newHTML);
+    }
+
+     if (data["street_address"]){
+         externAppsFunctions.loginComplete();
+    }
   },
+
+
+  callbackGetOnePlonk: function callbackGetOnePlonk(error, data) {
+    if (error) {
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+
+     externAppsFunctions.onePlonkReturned(data);
+  },
+
+
 
   ajaxCreateProfile: function (e,fName,lName,uName,address,city,state,zip){
     var myData = {
@@ -70,10 +104,11 @@ var plonkExtras = {
     tttapi.updatePlonk(this.tokenID, plonkID, myData, this.callback);
   },
 
- ajaxCreateMessage: function (e,receiver,mContent){
+ ajaxCreateMessage: function (e,copy,receiver,mContent){
     var myData = {
       "message": {
-        "sender_user_name": "",
+        "sender_user_name": copy,  // using this as flag to indicate to controller
+                                    // to make a copy of this message for the receiver
         "receiver_user_name": receiver,
         "plonk_message": mContent,
         "user_id": this.userID
@@ -87,6 +122,11 @@ var plonkExtras = {
   ajaxShowPlonk: function(e,query){
     e.preventDefault();
     tttapi.showPlonk(this.tokenID, this.userID, query, this.callback);
+  },
+
+  ajaxGetOnePlonk: function(e, plonkID){
+    e.preventDefault();
+    tttapi.getOnePlonk(this.tokenID, plonkID, this.callbackGetOnePlonk);
   },
 
   ajaxShowAllMessages: function(e){
@@ -110,6 +150,16 @@ var plonkExtras = {
     tttapi.destoryPlonk(this.tokenID, id, this.callback);
   },
 
+
+  clearMessages: function () {
+      var newHTML  = messageIndexTemplate({messages: []});
+      $("#message-list").html(newHTML);
+  },
+
+  clearPlonks: function () {
+      var newHTML  = plonkIndexTemplate({messages: []});
+      $("#plonk-list").html(newHTML);
+  }
 };
 
 
@@ -212,6 +262,18 @@ var tttapi = {
     }, callback);
   },
 
+  getOnePlonk: function (token, id,callback) {
+    this.ajax({
+      method: 'GET',
+      url: this.ttt + '/plonks/' + id,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+    }, callback);
+  },
+
   showAllMessages: function (token, callback) {
     this.ajax({
       method: 'GET',
@@ -302,10 +364,15 @@ $(function() {
       return;
     }
     $('.loginStatus').text("Successful registration");
+     externAppsFunctions.registerComplete();
   };
 
-  $('#register').on('submit', function(e) {
-    var credentials = wrap('credentials', form2object(this))
+  $('#registerButton').on('click', function(e) {
+    var stuff = {email: $('#regInputEmail').val(),
+                password: $('#regInputPassword').val(),
+                password_confirmation: $('#confirmPassword').val()};
+
+    var credentials = wrap('credentials', stuff)
 
 
     tttapi.register(credentials, registerCallback);
@@ -314,8 +381,11 @@ $(function() {
                           IF SOMETHING IS CLICKABLE AND YOU ARE DOING SOMETHING IN J SCRIPT CALL this */
   });
 
-  $('#login').on('submit', function(e) {
-    var credentials = wrap('credentials', form2object(this));
+  $('#loginButton').on('click', function(e) {
+    var stuff = {email: $('#inputEmail').val(),
+                  password: $('#inputPassword').val()};
+
+    var credentials = wrap('credentials', stuff); //form2object(this));
     var cb = function cb(error, data) {
       if (error) {
         $('.loginStatus').text("Error in login");
@@ -328,12 +398,14 @@ $(function() {
       // after successful login,  save the token and User ID
       plonkExtras.tokenID = data.user.token;
       plonkExtras.userID = data.user.id;
+      externAppsFunctions.loginComplete();
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
   });
 
-
+  plonkIndexTemplate = Handlebars.compile($('#plonk-index').html());
+  messageIndexTemplate = Handlebars.compile($('#message-index').html());
   externAppsFunctions.initApps();
 });
 

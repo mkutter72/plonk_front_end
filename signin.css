@@ -1,0 +1,236 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+.form-register {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  display: none;
+}
+.form-register .form-signin-heading,
+.form-register .checkbox {
+  margin-bottom: 10px;
+}
+.form-register .checkbox {
+  font-weight: normal;
+}
+.form-register .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-register .form-control:focus {
+  z-index: 2;
+}
+.form-register input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-register input[id="confirmPassword"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+
+.form-profile {
+  max-width: 500px;
+  padding: 15px;
+  margin: 0 auto;
+  display: none;
+}
+.form-profile .form-signin-heading,
+.form-profile .checkbox {
+  margin-bottom: 10px;
+}
+.form-profile .checkbox {
+  font-weight: normal;
+}
+.form-profile .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-profile .form-control:focus {
+  z-index: 2;
+}
+.form-profile input[id="inputZip"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+
+
+.form-plonk {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  display: none;
+}
+.form-plonk .form-signin-heading,
+.form-plonk .checkbox {
+  margin-bottom: 10px;
+}
+.form-plonk .checkbox {
+  font-weight: normal;
+}
+.form-plonk .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-plonk .form-control:focus {
+  z-index: 2;
+}
+.form-plonk input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-plonk input[id="inputTrade"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-plonk input[id="inputPlonkID"] {
+  margin-top: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+
+.form-message {
+  max-width: 500px;
+  padding: 15px;
+  margin: 0 auto;
+  display: none;
+}
+.form-message .form-signin-heading,
+.form-message .checkbox {
+  margin-bottom: 10px;
+}
+.form-message .checkbox {
+  font-weight: normal;
+}
+.form-message .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-message .form-control:focus {
+  z-index: 2;
+}
+.form-message input[id="inputMessage"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+.form-browse {
+  max-width: 300px;
+  padding: 15px;
+  margin: 0 auto;
+  display: none;
+}
+.form-browse .form-signin-heading,
+.form-browse .checkbox {
+  margin-bottom: 10px;
+}
+.form-browse .checkbox {
+  font-weight: normal;
+}
+.form-browse .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-browse .form-control:focus {
+  z-index: 2;
+}
+.form-browse input[id="inputType"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+.form-browse-table {
+  max-width: 700px;
+  display: none;
+}
+
+
+.form-message-table {
+  max-width: 700px;
+  display: none;
+}
+
+.form-plonkShowMine {
+  display: none;
+}

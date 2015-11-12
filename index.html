@@ -1,108 +1,274 @@
 <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
 
-<head>
-<title>Plonk test page</title>
+    <title>Plonk Exchange</title>
 
-  <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Bootstrap core CSS -->
+    <link href="assets/Bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-</head>
-<body>
-  <h1>Plonk test page</h1>
-  <div class="userInfo">
-    <form id="register">
-      <input name="email" type="text" placeholder="email">
-      <input name="password" type="password" placeholder="password">
-      <input name="password_confirmation" type="password" placeholder="password confirmation">
-      <input name="register" type="submit" value="Register">
-    </form>
-    <form id="login">
-      <input name="email" type="text" placeholder="email">
-      <input name="password" type="password" placeholder="password">
-      <input name="login" type="submit" value="Login">
-    </form>
-    <div class="loginStatus"></div>
+    <!-- Custom styles for this template -->
+    <link href="navbar.css" rel="stylesheet">
+    <link href="signin.css" rel="stylesheet">
 
-    <br>
-    <textarea id="result"></textarea>
-  </div>
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="assets/Bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
 
-  <br>
-  <div class="profileData">
-    <form id="profile">
-          <input id="firstName" type="text" placeholder="first name">
-          <input id="lastName" type="text" placeholder="last name">
-          <input id="userName" type="text" placeholder="user name">
-          <input id="address" type="text" placeholder="street address">
-          <input id="city" type="text" placeholder="city">
-          <input id="state" type="text" placeholder="state">
-          <input id="zipCode" type="text" placeholder="zip code">
-          <input id="profileDone" type="button" value="submit">
-    <form>
-  </div>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
-  <br>
-  <br>
-  <div class="plonkData">
-    <form id="plonk">
-          <input id="vineyard" type="text" placeholder="vineyard">
-          <input id="variety" type="text" placeholder="variety">
-          <input id="year" type="text" placeholder="year">
-          <input id="numBottles" type="text" placeholder="number of bottles">
-          <input id="price" type="text" placeholder="price">
-          <input id="willTade" type="text" placeholder="will trade">
-          <input id="plonkDone" type="button" value="submit">
+  <body>
 
-    <form>
-  </div>
+    <div class="container">
 
-  <div class="plonkUpdate">
-    <form id="plonkManage">
-          <input id="plonkID" type="text" placeholder="plonk ID">
-          <input id="plonkDelete" type="button" value="delete">
-          <input id="plonkEdit" type="button" value="edit">
-       <form>
-  </div>
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- <a class="navbar-brand" href="#">Login</a> -->
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active" id="login-li"><a id="login-tab" href="#Login">Login</a></li>
+              <li id="browse-li"><a id="browse-tab" href="#Browse">Browse</a></li>
+              <li id="plonk-li"><a id="plonk-tab" href="#My Plonk">My Plonk</a></li>
+              <li id="message-li"><a id="message-tab" href="#Messages">Messages</a></li>
+              <li id="profile-li"> <a id="profile-tab" href="#Profile">Profile</a></li>
+              <li id="register-li"> <a id="register-tab" href="#Register">Register</a></li>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
 
-  <br>
-  <br>
-  <div class="messageData">
-    <form id="messageForm">
-          <input id="sender" type="text" placeholder="sender username">
-          <input id="receiver" type="text" placeholder="receiver username">
-          <input id="messageContent" type="text" placeholder="message text">
-          <input id="messageDone" type="button" value="submit">
-          <input id="messageReset" type="reset">
-    <form>
-  </div>
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Navbar example</h1>
+        <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+        </p>
+      </div>
 
- <br>
-  <br>
-  <div class="getPlonk">
-    <form id="getPlonkForm">
-          <input id="plonkVariety" type="text" placeholder="wine variety">
-          <input id="plonkCity" type="text" placeholder="city">
-          <input id="plonkSearch" type="button" value="search">
-          <input id="plonkShow" type="button" value="show">
-          <input id="plonkShowMine" type="button" value="show mine">
-    <form>
-  </div>
-
-  <br>
-  <br>
-  <div class="messageOps">
-      <form id="messageOpsForm">
-            <input id="displayMessages" type="button" value="Display Messages">
-            <input id="clearMessages" type="button" value="Clear Messages">
-            <input id="showMessages" type="button" value="Show All">
-      <form>
-  </div>
+    </div> <!-- /container -->
 
 
+ <div class="container">
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+        <button id="loginButton" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+  </div> <!-- /container -->
+
+ <div class="container">
+      <form class="form-register">
+        <h2 class="form-register-heading">Please Register</h2>
+        <label for="regInputEmail" class="sr-only">Email address</label>
+        <input type="email" id="regInputEmail" class="form-control" placeholder="Email address" required autofocus>
+
+        <label for="regInputPassword" class="sr-only">Password</label>
+        <input type="password" id="regInputPassword" class="form-control" placeholder="Password" required>
+
+        <label for="confirmPassword" class="sr-only">Confirm Password</label>
+        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+
+        <button  id="registerButton" class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+      </form>
+  </div> <!-- /container -->
+
+   <div class="container">
+      <form class="form-profile">
+        <h2 class="form-profile-heading">Please fill in profile information</h2>
+        <label for="inputFname" class="sr-only">First Name</label>
+        <input type="text" id="inputFname" class="form-control" placeholder="First Name" required autofocus>
+
+        <label for="inputLname" class="sr-only">Last Name</label>
+        <input type="text" id="inputLname" class="form-control" placeholder="Last Name" required autofocus>
+
+        <label for="inputUname" class="sr-only">Last Name</label>
+        <input type="text" id="inputUname" class="form-control" placeholder="User Name" required autofocus>
+
+        <label for="inputAddress" class="sr-only">Last Name</label>
+        <input type="text" id="inputAddress" class="form-control" placeholder="Address" required autofocus>
+
+        <label for="inputCity" class="sr-only">Last Name</label>
+        <input type="text" id="inputCity" class="form-control" placeholder="City" required autofocus>
+
+        <label for="inputState" class="sr-only">Last Name</label>
+        <input type="text" id="inputState" class="form-control" placeholder="State" required autofocus>
+
+        <label for="inputZip" class="sr-only">Last Name</label>
+        <input type="text" id="inputZip" class="form-control" placeholder="Zip Code" required autofocus>
+
+        <button id = "profileButton" class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      </form>
+
+  </div> <!-- /container -->
 
 
-  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script type="text/javascript" src="http://ttt.wdibos.com/js/resource-watcher-0.1.0.js" defer charset="utf-8"></script>
- <script type="text/javascript" src="index.js" defer charset="utf-8"></script>
-<script src="app.js" type="application/javascript" charset="utf-8" defer></script>
+   <div class="container">
+      <form class="form-plonk">
+        <h2 class="form-plonk-heading">Plonk Ad Information</h2>
+        <label for="inputVyard" class="sr-only">Vineyard</label>
+        <input type="text" id="inputVyard" class="form-control" placeholder="Vineyard" required autofocus>
 
-</body>
+        <label for="inputVariety" class="sr-only">Variety</label>
+        <input type="text" id="inputVariety" class="form-control" placeholder="Variety" required autofocus>
+
+        <label for="inputYear" class="sr-only">Year</label>
+        <input type="text" id="inputYear" class="form-control" placeholder="Year" required autofocus>
+
+        <label for="inputNumBottles" class="sr-only">Number of Bottle</label>
+        <input type="text" id="inputNumBottles" class="form-control" placeholder="Number of Bottles" required autofocus>
+
+        <label for="inputPrice" class="sr-only">Price</label>
+        <input type="text" id="inputPrice" class="form-control" placeholder="Price" required autofocus>
+
+        <label for="inputTrade" class="sr-only">Will Trade</label>
+        <input type="text" id="inputTrade" class="form-control" placeholder="Will Trade" required autofocus>
+
+        <button id = "plonkButton" class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+
+       <label for="inputPlonkID" class="sr-only">Plonk ID</label>
+       <input type="text" id="inputPlonkID" class="form-control" placeholder="Plonk ID" required autofocus>
+
+        <button id = "plonkDeleteButton" class="btn btn-lg btn-primary" type="submit">Delete</button>
+        <button id = "plonkFindButton" class="btn btn-lg btn-primary" type="submit">Find</button>
+        <button id = "plonkSaveButton" class="btn btn-lg btn-primary" type="submit">Save</button>
+      </form>
+      <form class="form-plonkShowMine">
+        <button id = "plonkShowMineButton" class="btn btn-lg btn-primary" type="submit">Show Mine</button>
+      </form>
+  </div> <!-- /container -->
+
+
+  <div class="container">
+      <form class="form-message">
+        <h2 class="form-Message-heading">Message User</h2>
+        <label for="inputReceiver" class="sr-only">Vineyard</label>
+        <input type="text" id="inputReceiver" class="form-control" placeholder="Receiver User Name" required autofocus>
+
+        <label for="inputMessage" class="sr-only">Variety</label>
+        <input type="text" id="inputMessage" class="form-control" placeholder="Message" required autofocus>
+
+        <button id = "messageButton" class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      </form>
+
+      <form class="form-message-table">
+          <button id = "showMessagesButton" class="btn btn-lg btn-primary" type="submit">Show All</button>
+         <button id = "clearMessagesButton" class="btn btn-lg btn-primary" type="submit">Clear</button>
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th>Sender</th>
+                      <th>Recipient</th>
+                      <th>Date/Time</th>
+                      <th>Message</th>
+                  </tr>
+              </thead>
+              <tbody id="message-list">
+                    <script id="message-index" type="text/x-handlebars-template">
+                      {{#each messages}}
+                        <tr data-message-id="{{id}}">
+                          <td>{{sender_user_name}}</td>
+                          <td>{{receiver_user_name}}</td>
+                          <td>{{created_at}}</td>
+                          <td>{{plonk_message}}</td>
+                        </tr>
+                      {{/each}}
+                    </script>
+              </tbody>
+          </table>
+      </form>
+  </div> <!-- /container -->
+
+  <div class="container">
+      <form class="form-browse">
+        <h2 class="form-browse-heading">Browse Plonk</h2>
+
+        <label for="inputPlonkCity" class="sr-only">Vineyard</label>
+        <input type="text" id="inputPlonkCity" class="form-control" placeholder="City" required autofocus>
+
+        <label for="inputPlonkType" class="sr-only">Variety</label>
+        <input type="text" id="inputPlonkType" class="form-control" placeholder="Wine Type" required autofocus>
+
+        <button id = "searchPlonkButton" class="btn btn-lg btn-primary" type="submit">Search</button>
+        <button id = "showPlonkButton" class="btn btn-lg btn-primary" type="submit">Show All</button>
+      </form>
+
+      <form class="form-browse-table">
+       <table class="table table-bordered" id="plonk-table">
+            <thead>
+                <tr>
+                    <th>Vineyard</th>
+                    <th>Variety</th>
+                    <th>Year</th>
+                    <th>Number of Bottles</th>
+                    <th>Price</th>
+                    <th>Will Trade</th>
+                    <th>Owner</th>
+                    <th>ID</th>
+                </tr>
+            </thead>
+            <tbody id="plonk-list">
+                  <script id="plonk-index" type="text/x-handlebars-template">
+                    {{#each plonks}}
+                      <tr data-plonk-id="{{id}}">
+                        <td>{{vineyard}}</td>
+                        <td>{{variety}}</td>
+                        <td>{{year}}</td>
+                        <td>{{number_of_bottles}}</td>
+                        <td>{{price}}</td>
+                        <td>{{will_trade}}</td>
+                        <td>{{user_name}}</td>
+                        <td>{{id}}</td>
+                      </tr>
+                    {{/each}}
+                  </script>
+            </tbody>
+        </table>
+      </form>
+  </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="index.js" defer charset="utf-8"></script>
+    <script src="app.js" type="application/javascript" charset="utf-8" defer></script>
+    <script type="text/javascript" src="assets/handlebars-v3.0.3.js"></script>
+    <script src="assets/Bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+  </body>
+</html>

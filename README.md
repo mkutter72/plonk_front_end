@@ -28,6 +28,7 @@ What is The Plonk Exchange? How many times have you had guests over that bring t
 * As a user, when I view my message list I want to see the sender username,  the message text and time and date the message was created
 * As a user I want to clear my messages
 * As a user I want to respond to a message that another user sent to me
+* As a user,  when I send a message,  I don't want to remain anonymous and only have my username included in the message
 
 ###Additional Stories for Phase II
 * As a user I want to be able to retrieve information about my plonk on Wines.com
