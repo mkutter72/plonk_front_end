@@ -167,7 +167,7 @@ var plonkExtras = {
 
 var tttapi = {
   gameWatcher: null,
-  ttt: 'http://localhost:3000',
+  ttt: 'https://powerful-earth-3914.herokuapp.com/',
 
   ajax: function(config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
