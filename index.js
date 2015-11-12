@@ -39,8 +39,8 @@ var plonkExtras = {
 
       messages.forEach(printMessages);
 
-      // var newHTML  = messageIndexTemplate({messages: messages});
-      // $("#message-list").html(newHTML);
+      var newHTML  = messageIndexTemplate({messages: messages});
+      $("#message-list").html(newHTML);
     }
 
      if (data["street_address"]){
@@ -378,7 +378,7 @@ $(function() {
   });
 
   plonkIndexTemplate = Handlebars.compile($('#plonk-index').html());
-  // messageIndexTemplate = Handlebars.compile($('#message-index').html());
+  messageIndexTemplate = Handlebars.compile($('#message-index').html());
   externAppsFunctions.initApps();
 });
 

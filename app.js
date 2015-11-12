@@ -18,6 +18,7 @@ var  allTabsNonActive =function (){
     $(".form-plonk").hide();
     $(".form-browse").hide();
     $(".form-browse-table").hide();
+    $(".form-message-table").hide();
   };
 
 var goToBrowseTab = function() {
@@ -96,7 +97,7 @@ var initializeApp = function () {
     });
 
   // Show all plonk that belongs to the current user
-  $('#plonkShowMine').on('click', function(event) {
+  $('#plonkShowMineButton').on('click', function(event) {
 
     plonkExtras.ajaxShowPlonk(event, "?user_id=" + plonkExtras.userID);
 
@@ -104,10 +105,12 @@ var initializeApp = function () {
 
 
   // Delete a plonk ad
-  $('#plonkDelete').on('click', function(event) {
+  $('#plonkDeleteButton').on('click', function(event) {
 
-    if ($('#plonkID').val())
-      plonkExtras.ajaxDeletePlonk(event, $('#plonkID').val());
+    if ($('#inputPlonkID').val())
+      plonkExtras.ajaxDeletePlonk(event, $('#inputPlonkID').val());
+
+    $('#inputPlonkID').val("")
     });
 
   // Display mesages that belong to the user
@@ -118,7 +121,7 @@ var initializeApp = function () {
     });
 
   // Show all messages
-  $('#showMessages').on('click', function(event) {
+  $('#showMessagesButton').on('click', function(event) {
     //$('#profile').blur();
 
     plonkExtras.ajaxShowAllMessages(event);
@@ -165,12 +168,14 @@ var initializeApp = function () {
     allTabsNonActive();
     $('#plonk-li').addClass('active');
     $(".form-plonk").show();
+    $(".form-browse-table").show();
   });
 
  $('#message-tab').on('click', function(event) {
     allTabsNonActive();
     $('#message-li').addClass('active');
     $(".form-message").show();
+    $(".form-message-table").show();
   });
 
 };

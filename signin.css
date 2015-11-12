@@ -148,6 +148,12 @@ body {
   border-top-right-radius: 0;
 }
 
+.form-plonk input[id="inputPlonkID"] {
+  margin-top: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 
 
 .form-message {
@@ -215,6 +221,12 @@ body {
 
 
 .form-browse-table {
+  max-width: 700px;
+  display: none;
+}
+
+
+.form-message-table {
   max-width: 700px;
   display: none;
 }

@@ -152,6 +152,13 @@
         <input type="text" id="inputTrade" class="form-control" placeholder="Will Trade" required autofocus>
 
         <button id = "plonkButton" class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
+       <label for="inputPlonkID" class="sr-only">Plonk ID</label>
+       <input type="text" id="inputPlonkID" class="form-control" placeholder="Plonk ID" required autofocus>
+
+        <button id = "plonkDeleteButton" class="btn btn-lg btn-primary" type="submit">Delete</button>
+        <button id = "plonkEditButton" class="btn btn-lg btn-primary" type="submit">Edit</button>
+        <button id = "plonkShowMineButton" class="btn btn-lg btn-primary" type="submit">Shown Mine</button>
       </form>
 
   </div> <!-- /container -->
@@ -167,6 +174,33 @@
         <input type="text" id="inputMessage" class="form-control" placeholder="Message" required autofocus>
 
         <button id = "messageButton" class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      </form>
+
+      <form class="form-message-table">
+          <button id = "showMessagesButton" class="btn btn-lg btn-primary" type="submit">Show All</button>
+
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th>Sender</th>
+                      <th>Recipient</th>
+                      <th>Date/Time</th>
+                      <th>Message</th>
+                  </tr>
+              </thead>
+              <tbody id="message-list">
+                    <script id="message-index" type="text/x-handlebars-template">
+                      {{#each messages}}
+                        <tr data-message-id="{{id}}">
+                          <td>{{sender_user_name}}</td>
+                          <td>{{receiver_user_name}}</td>
+                          <td>{{created_at}}</td>
+                          <td>{{plonk_message}}</td>
+                        </tr>
+                      {{/each}}
+                    </script>
+              </tbody>
+          </table>
       </form>
   </div> <!-- /container -->
 
@@ -195,6 +229,7 @@
                     <th>Price</th>
                     <th>Will Trade</th>
                     <th>Owner</th>
+                    <th>ID</th>
                 </tr>
             </thead>
             <tbody id="plonk-list">
@@ -208,6 +243,7 @@
                         <td>{{price}}</td>
                         <td>{{will_trade}}</td>
                         <td>{{user_name}}</td>
+                        <td>{{id}}</td>
                       </tr>
                     {{/each}}
                   </script>
