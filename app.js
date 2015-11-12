@@ -128,7 +128,7 @@ var initializeApp = function () {
     });
 
   // Delete the messages for the current user
- $('#clearMessages').on('click', function(event) {
+ $('#clearMessagesButton').on('click', function(event) {
     //$('#profile').blur();
 
     plonkExtras.ajaxDestoryUsersMessages(event);
