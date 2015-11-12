@@ -31,12 +31,12 @@ var initializeApp = function () {
 
   // Setup the callbacks for button clicks on the UI
   // Create User Profile
-  $('#profileDone').on('click', function(event) {
+  $('#profileButton').on('click', function(event) {
     //$('#profile').blur();
 
-    plonkExtras.ajaxCreateProfile(event,$('#firstName').val(),$('#lastName').val(),
-      $('#userName').val(),$('#address').val(),$('#city').val(),
-      $('#state').val(),$('#zipCode').val());
+    plonkExtras.ajaxCreateProfile(event,$('#inputFname').val(),$('#inputLname').val(),
+      $('#inputUname').val(),$('#inputAddress').val(),$('#inputCity').val(),
+      $('#inputState').val(),$('#inputZip').val());
     });
 
 

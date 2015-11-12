@@ -43,6 +43,10 @@ var plonkExtras = {
       // $("#message-list").html(newHTML);
     }
 
+     if (data["street_address"]){
+         externAppsFunctions.loginComplete();
+    }
+
     $('#result').val(dataStr);
 
 
