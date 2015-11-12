@@ -215,5 +215,6 @@ body {
 
 
 .form-browse-table {
+  max-width: 700px;
   display: none;
 }
