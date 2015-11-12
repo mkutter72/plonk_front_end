@@ -2,6 +2,31 @@
 
 var externAppsFunctions = externAppsFunctions || {};
 
+
+var  allTabsNonActive =function (){
+    $('#login-li').removeClass('active');
+    $('#profile-li').removeClass('active');
+    $('#browse-li').removeClass('active');
+    $('#plonk-li').removeClass('active');
+    $('#message-li').removeClass('active');
+    $('#register-li').removeClass('active');
+
+    $(".form-signin").hide();
+    $(".form-register").hide();
+    $(".form-profile").hide();
+  };
+
+var goToBrowseTab = function() {
+  allTabsNonActive();
+  $('#browse-li').addClass('active');
+};
+
+var goToLoginTab = function() {
+  allTabsNonActive();
+  $('#login-li').addClass('active');
+  $(".form-signin").show();
+};
+
 var initializeApp = function () {
 
   // Setup the callbacks for button clicks on the UI
@@ -105,38 +130,30 @@ var initializeApp = function () {
     clicked_tr.addClass('highlight');
   });
 
-  function allTabsNonActive (){
-    $('#login-li').removeClass('active');
-    $('#profile-li').removeClass('active');
-    $('#browse-li').removeClass('active');
-    $('#plonk-li').removeClass('active');
-    $('#message-li').removeClass('active');
-    $('#register-li').removeClass('active');
 
-    $(".form-signin").hide();
-    $(".form-register").hide();
-    $(".form-profile").hide();
-  }
 
   $('#profile-tab').on('click', function(event) {
-      allTabsNonActive();
-      $('#profile-li').addClass('active');
-      $(".form-profile").show();
+    allTabsNonActive();
+    $('#profile-li').addClass('active');
+    $(".form-profile").show();
   });
 
   $('#login-tab').on('click', function(event) {
-      allTabsNonActive();
-      $('#login-li').addClass('active');
-      $(".form-signin").show();
+    goToLoginTab();
   });
 
   $('#register-tab').on('click', function(event) {
-      allTabsNonActive();
-      $('#register-li').addClass('active');
-      $(".form-register").show();
+    allTabsNonActive();
+    $('#register-li').addClass('active');
+    $(".form-register").show();
   });
 
+ $('#browse-tab').on('click', function(event) {
+    goToBrowseTab();
+  });
 };
 
 // Setup so index.js file can call this
 externAppsFunctions['initApps'] = initializeApp;
+externAppsFunctions['loginComplete'] = goToBrowseTab;
+externAppsFunctions['registerComplete'] = goToLoginTab;

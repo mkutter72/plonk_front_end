@@ -333,10 +333,15 @@ $(function() {
       return;
     }
     $('.loginStatus').text("Successful registration");
+     externAppsFunctions.registerComplete();
   };
 
-  $('#register').on('submit', function(e) {
-    var credentials = wrap('credentials', form2object(this))
+  $('#registerButton').on('click', function(e) {
+    var stuff = {email: $('#regInputEmail').val(),
+                password: $('#regInputPassword').val(),
+                password_confirmation: $('#confirmPassword').val()};
+
+    var credentials = wrap('credentials', stuff)
 
 
     tttapi.register(credentials, registerCallback);
@@ -345,8 +350,11 @@ $(function() {
                           IF SOMETHING IS CLICKABLE AND YOU ARE DOING SOMETHING IN J SCRIPT CALL this */
   });
 
-  $('#login').on('submit', function(e) {
-    var credentials = wrap('credentials', form2object(this));
+  $('#loginButton').on('click', function(e) {
+    var stuff = {email: $('#inputEmail').val(),
+                  password: $('#inputPassword').val()};
+
+    var credentials = wrap('credentials', stuff); //form2object(this));
     var cb = function cb(error, data) {
       if (error) {
         $('.loginStatus').text("Error in login");
@@ -359,6 +367,7 @@ $(function() {
       // after successful login,  save the token and User ID
       plonkExtras.tokenID = data.user.token;
       plonkExtras.userID = data.user.id;
+      externAppsFunctions.loginComplete();
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
