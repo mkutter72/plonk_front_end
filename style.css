@@ -18,3 +18,15 @@ background-position: right top;
   /*background-position: top -90px left 00px;*/
 }
 
+.introText {
+   position: relative;
+
+    left : 100px;
+    top : -230px;
+  color: lightblue;
+ max-width: 600px;
+  padding: 15px;
+  margin: 0 auto;
+  font-size: 20px;
+}
+

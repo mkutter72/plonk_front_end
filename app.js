@@ -21,6 +21,8 @@ var  allTabsNonActive =function (){
     $(".form-message-table").hide();
     $(".form-plonkShowMine").hide();
     $("#messageButtonGroup").hide();
+    $(".introText").hide();
+
   };
 
 var goToBrowseTab = function() {
@@ -35,6 +37,17 @@ var goToLoginTab = function() {
   $('#login-li').addClass('active');
   $(".form-signin").show();
 };
+
+var gotoMyPlonkTab = function () {
+    allTabsNonActive();
+    $('#plonk-li').addClass('active');
+    $(".form-plonk").show();
+    plonkExtras.clearPlonks();
+    $(".form-browse-table").show();
+     $(".form-plonkShowMine").show();
+     $("#plonkListTable").css("top",-535);
+}
+
 
 var updatePlonkAdInfo = function(data) {
   $('#inputVyard').val(data["vineyard"]);
@@ -191,13 +204,7 @@ var initializeApp = function () {
     });
 
   $('#plonk-tab').on('click', function(event) {
-    allTabsNonActive();
-    $('#plonk-li').addClass('active');
-    $(".form-plonk").show();
-    plonkExtras.clearPlonks();
-    $(".form-browse-table").show();
-     $(".form-plonkShowMine").show();
-     $("#plonkListTable").css("top",-535);
+        gotoMyPlonkTab()
   });
 
  $('#message-tab').on('click', function(event) {
@@ -213,6 +220,6 @@ var initializeApp = function () {
 
 // Setup so index.js file can call this
 externAppsFunctions['initApps'] = initializeApp;
-externAppsFunctions['loginComplete'] = goToBrowseTab;
+externAppsFunctions['loginComplete'] = gotoMyPlonkTab;
 externAppsFunctions['registerComplete'] = goToLoginTab;
 externAppsFunctions['onePlonkReturned'] = updatePlonkAdInfo;
