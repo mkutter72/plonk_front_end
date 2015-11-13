@@ -234,3 +234,42 @@ body {
 .form-plonkShowMine {
   display: none;
 }
+
+#ssControls {
+  position: relative;
+    left : -350px;
+    top : -20px;
+}
+
+
+#plonkListTable {
+  position: absolute;
+    left : 400px;
+    top : -210px;
+}
+
+
+.signinGroup {
+  position: relative;
+    left : -350px;
+    top : -20px;
+}
+
+#plonkGroup {
+  position: relative;
+    left : -350px;
+    top : -20px;
+}
+
+
+#plonkListTable {
+  position: relative;
+    left : 400px;
+    top : -210px;
+}
+
+/*#plonkListTable {
+  position: absolute;
+    left : 400px;
+    top : -210px;
+}*/

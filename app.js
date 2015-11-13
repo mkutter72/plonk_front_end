@@ -185,6 +185,7 @@ var initializeApp = function () {
   $('#browse-tab').on('click', function(event) {
     plonkExtras.clearPlonks();
     goToBrowseTab();
+    $("#plonkListTable").css("top",-210);
     });
 
   $('#plonk-tab').on('click', function(event) {
@@ -194,6 +195,7 @@ var initializeApp = function () {
     plonkExtras.clearPlonks();
     $(".form-browse-table").show();
      $(".form-plonkShowMine").show();
+     $("#plonkListTable").css("top",-535);
   });
 
  $('#message-tab').on('click', function(event) {

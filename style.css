@@ -9,112 +9,12 @@
 
 body{
   /*background: url("background.jpg");*/
-  background-size: 800px 800px;
-  background-position: top -90px left 00px;
+    background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+  /*background-size: 800px 800px;*/
+  /*background-position: top -90px left 00px;*/
 }
 
-h1 {
-  text-align: left;
-  font-size: 40px;
-  /*font-family : Impact, Charcoal, sans-serif;*/
-}
-
-
-.boardImage {
-  height: 370px;
-  max-width: 370px;
-  margin : 30px auto;
-  position: relative;
-  top :20px;
-  left :-120px;
-}
-
-
-.newrow{
-clear : left;
-}
-
-
-.square {
-  height: 100px;
-  width: 100px;
-  float : left;
-  font-size: 80px;
-  font-style: bold;
-  color: midnightblue;
-  text-align: center;
-  vertical-align: middle;
-  border : 2px black solid;
-}
-
-
-.Main {
-  position: relative;
-  top : -50px;
-  height: 500px;
-  width: 700px;
-  background-color : none;
-  display: none;
-}
-
-.newGame{
-  position: relative;
-    left : 420px;
-    top : -130px;
-}
-
-*[type="button"] {
-  font-size: 15px;
-  height : 35px;
-  width: 130px;
-  border: 2px solid;
-  border-radius: 10px;
-  background-color: white;
-}
-
-.winnerStatus{
-  position: relative;
-  left : 420px;
-  top : -240px;
-  height : 50px;
-  width: 500px;
-  font-size: 40px;
-  color: midnightblue;
-}
-
-.loginStatus {
-  height: 50px;
-  width: 300px;
-  font-size: 15px;
-}
-
-#result {
-  height: 200px;
-  width: 400px;
-  margin: 0 auto;
-}
-
-#join-game {
-  display : none;
-}
-
-#mark-cell{
-  display : none;
-}
-
-#watch-game{
-  display : none;
-}
-
-.twoplayer {
-  position: relative;
-  left : 420px;
-  top : -350px;
-
-}
-
-.mgIDClass {
-  width : 130px;
-  font-size: 15px;
-
-}

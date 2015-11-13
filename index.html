@@ -17,6 +17,7 @@
     <!-- Custom styles for this template -->
     <link href="navbar.css" rel="stylesheet">
     <link href="signin.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -58,9 +59,11 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
+      </div>
 
 
  <div class="container">
+   <div class="signinGroup">
       <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
@@ -71,6 +74,7 @@
 
         <button id="loginButton" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
+      </div>
   </div> <!-- /container -->
 
  <div class="container">
@@ -120,6 +124,7 @@
 
 
    <div class="container">
+   <div id="plonkGroup">
       <form class="form-plonk">
         <h2 class="form-plonk-heading">Plonk Ad Information</h2>
         <label for="inputVyard" class="sr-only">Vineyard</label>
@@ -149,6 +154,7 @@
         <button id = "plonkFindButton" class="btn btn-lg btn-primary" type="submit">Find</button>
         <button id = "plonkSaveButton" class="btn btn-lg btn-primary" type="submit">Save</button>
       </form>
+      </div>
       <form class="form-plonkShowMine">
         <button id = "plonkShowMineButton" class="btn btn-lg btn-primary" type="submit">Show Mine</button>
       </form>
@@ -196,6 +202,7 @@
   </div> <!-- /container -->
 
   <div class="container">
+    <div id="ssControls">
       <form class="form-browse">
         <h2 class="form-browse-heading">Browse Plonk</h2>
 
@@ -208,7 +215,14 @@
         <button id = "searchPlonkButton" class="btn btn-lg btn-primary" type="submit">Search</button>
         <button id = "showPlonkButton" class="btn btn-lg btn-primary" type="submit">Show All</button>
       </form>
+      </div>
 
+
+
+  </div> <!-- /container -->
+
+ <div class="container">
+      <div id="plonkListTable">
       <form class="form-browse-table">
        <table class="table table-bordered" id="plonk-table">
             <thead>
@@ -241,8 +255,8 @@
             </tbody>
         </table>
       </form>
-  </div> <!-- /container -->
-
+      </div>
+      </div> <!-- /container -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
