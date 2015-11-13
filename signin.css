@@ -75,7 +75,11 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
+.form-register {
+  position: relative;
+    left : -380px;
+    top : -20px;
+}
 
 
 .form-profile {
@@ -108,7 +112,11 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
+.form-profile {
+  position: relative;
+    left : -320px;
+    top : -20px;
+}
 
 
 
@@ -157,7 +165,7 @@ body {
 
 
 .form-message {
-  max-width: 500px;
+  max-width: 380px;
   padding: 15px;
   margin: 0 auto;
   display: none;
@@ -233,4 +241,71 @@ body {
 
 .form-plonkShowMine {
   display: none;
+}
+
+#ssControls {
+  position: relative;
+    left : -380px;
+    top : -20px;
+}
+
+
+#plonkListTable {
+  position: absolute;
+    left : 400px;
+    top : -210px;
+    background-color: white;
+    max-width: 700px;
+}
+
+
+.signinGroup {
+  position: relative;
+    left : -380px;
+    top : -20px;
+}
+
+#plonkGroup {
+  position: relative;
+    left : -380px;
+    top : -20px;
+}
+
+
+#plonkListTable {
+  position: relative;
+    left : 400px;
+    top : -210px;
+}
+
+
+#messageControl {
+  position: relative;
+    left : -380px;
+    top : -20px;
+}
+
+
+
+#messageButtonGroup {
+  position: relative;
+    left : 400px;
+    top : -240px;
+    display: none;
+
+}
+
+#messageListTable{
+  position: relative;
+    left : 400px;
+    top : -220px;
+    background-color: white;
+    max-width: 650px;
+}
+
+
+#plonkShowMineButton{
+  position: relative;
+    left : 35px;
+    top : -30px;
 }
