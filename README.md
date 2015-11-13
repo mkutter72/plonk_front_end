@@ -31,10 +31,12 @@ What is The Plonk Exchange? How many times have you had guests over that bring t
 * As a user,  when I send a message,  I don't want to remain anonymous and only have my username included in the message
 
 ###Additional Stories for Phase II
+* As a user I want the tables in Plonk Exchange to have a max number of row and scroll bars
 * As a user I want to be able to retrieve information about my plonk on Wines.com
 * As a user I want to be able to put a picture in my plonk ad
 * As a user I want to be notified by email when I have a new message
-* As a user I want to be able to search for plonk base on distance from my house
+* As a user I want to be able to search for plonk based on distance from my house
+* As a user, if I am online,  I want to be notified if I have a new message
 * As a user I want to be able to create a watch for getting notified if a kind of plonk is posted (could be an additional message from the system rather than another user)
 
 
