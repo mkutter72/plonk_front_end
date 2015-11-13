@@ -22,7 +22,6 @@ var  allTabsNonActive =function (){
     $(".form-plonkShowMine").hide();
     $("#messageButtonGroup").hide();
     $(".introText").hide();
-
   };
 
 var goToBrowseTab = function() {

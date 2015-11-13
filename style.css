@@ -21,8 +21,8 @@ background-position: right top;
 .introText {
    position: relative;
 
-    left : -15px;
-    top : 0px;
+    left : 100px;
+    top : -230px;
   color: lightblue;
  max-width: 600px;
   padding: 15px;
