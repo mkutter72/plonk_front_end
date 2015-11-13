@@ -75,7 +75,11 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
+.form-register {
+  position: relative;
+    left : -380px;
+    top : -20px;
+}
 
 
 .form-profile {
@@ -108,7 +112,11 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
+.form-profile {
+  position: relative;
+    left : -320px;
+    top : -20px;
+}
 
 
 
@@ -157,7 +165,7 @@ body {
 
 
 .form-message {
-  max-width: 500px;
+  max-width: 380px;
   padding: 15px;
   margin: 0 auto;
   display: none;
@@ -237,7 +245,7 @@ body {
 
 #ssControls {
   position: relative;
-    left : -350px;
+    left : -380px;
     top : -20px;
 }
 
@@ -251,13 +259,13 @@ body {
 
 .signinGroup {
   position: relative;
-    left : -350px;
+    left : -380px;
     top : -20px;
 }
 
 #plonkGroup {
   position: relative;
-    left : -350px;
+    left : -380px;
     top : -20px;
 }
 
@@ -268,8 +276,19 @@ body {
     top : -210px;
 }
 
-/*#plonkListTable {
-  position: absolute;
+
+#messageControl {
+  position: relative;
+    left : -380px;
+    top : -20px;
+}
+
+
+
+#messageListTable {
+  position: relative;
     left : 400px;
     top : -210px;
-}*/
+}
+
+
