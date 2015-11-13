@@ -254,6 +254,8 @@ body {
   position: absolute;
     left : 400px;
     top : -210px;
+    background-color: white;
+    max-width: 700px;
 }
 
 
@@ -285,10 +287,20 @@ body {
 
 
 
-#messageListTable {
+#messageButtonGroup {
   position: relative;
     left : 400px;
-    top : -210px;
+    top : -240px;
+    display: none;
+
+}
+
+#messageListTable{
+  position: relative;
+    left : 400px;
+    top : -220px;
+    background-color: white;
+    max-width: 650px;
 }
 
 

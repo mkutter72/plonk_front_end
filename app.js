@@ -20,6 +20,7 @@ var  allTabsNonActive =function (){
     $(".form-browse-table").hide();
     $(".form-message-table").hide();
     $(".form-plonkShowMine").hide();
+    $("#messageButtonGroup").hide();
   };
 
 var goToBrowseTab = function() {
@@ -204,6 +205,7 @@ var initializeApp = function () {
     $(".form-message").show();
     plonkExtras.clearMessages();
     $(".form-message-table").show();
+    $("#messageButtonGroup").show();
   });
 
 };
