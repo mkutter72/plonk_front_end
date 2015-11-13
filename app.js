@@ -80,7 +80,6 @@ var initializeApp = function () {
    $('#plonkFindButton').on('click', function(event) {
     editPlonkID = $('#inputPlonkID').val();
     plonkExtras.ajaxGetOnePlonk(event,editPlonkID);
-    $('#inputPlonkID').val("");
     });
 
   // Update an existing plonk ad
@@ -92,6 +91,7 @@ var initializeApp = function () {
 
         clearPlonkAd();
         editPlonkID = -1;
+        $('#inputPlonkID').val("");
       };
     });
 
@@ -133,7 +133,8 @@ var initializeApp = function () {
     if ($('#inputPlonkID').val())
       plonkExtras.ajaxDeletePlonk(event, $('#inputPlonkID').val());
 
-    $('#inputPlonkID').val("")
+    $('#inputPlonkID').val("");
+    clearPlonkAd();
     });
 
   // Display mesages that belong to the user
