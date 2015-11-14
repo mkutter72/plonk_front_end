@@ -51,7 +51,7 @@ What is The Plonk Exchange? How many times have you had guests over that bring t
 * Analysis of user stores for determining what data tables are present in the database
 * Consider what queries will be needed to retieve and operate on data tables
 * Create database and models and test with rails db and rails c
-* Implement rounts and test with postman and curl
+* Implement routes and test with postman and curl
 * Create Website with function controls but not final organization
 * Create JavaScript for DOM manipulation and AJAX on the front-end
 * Integrate front and back ends
