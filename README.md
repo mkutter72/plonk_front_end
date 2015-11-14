@@ -40,6 +40,11 @@ What is The Plonk Exchange? How many times have you had guests over that bring t
 * As a user I want to be able to create a watch for getting notified if a kind of plonk is posted (could be an additional message from the system rather than another user)
 
 
+##Wireframe Diagrams
+![alt tag](wframe1.pdf)
+![alt tag](wframe2.pdf)
+![alt tag](wframe3.pdf)
+
 ###Workflow Planning
 * Define user stories
 * Create Wireframe for Website
