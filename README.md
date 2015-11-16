@@ -45,7 +45,7 @@ What is The Plonk Exchange? How many times have you had guests over that bring t
 ![alt tag](wframe2.pdf)
 ![alt tag](wframe3.pdf)
 
-###Workflow Planning
+##Workflow Planning
 * Define user stories
 * Create Wireframe for Website
 * Analysis of user stores for determining what data tables are present in the database
@@ -58,5 +58,11 @@ What is The Plonk Exchange? How many times have you had guests over that bring t
 * Make Website look nice
 * Work on Phase II tasks
 
+## Technologies Used
+HTLM, CSS, Boostrap
+Java Script,  JQuery, AJAX, JSON
+Handlebars,  Ruby, Ruby on Rails
 
+##URL to Plonk Exchange
+http://mkutter72.github.io/plonk_front_end/
 
