@@ -4,11 +4,7 @@ var externAppsFunctions = externAppsFunctions || {};
 
 var plonkIndexTemplate, messageIndexTemplate;
 
-
-var plonkExtras = {
-  tokenID: 0,
-  userID: 0,
-
+var plonkCallbacks = {
 
   callback: function callback(error, data) {
     if (error) {
@@ -20,25 +16,51 @@ var plonkExtras = {
     // keeping this around just incase I need to turn back on displaying all returns from DB
     var dataStr = JSON.stringify(data, null, 4);
 
-    if (data["plonks"]){
-      var plonks = data["plonks"];
+  },
+
+ profileCompleteCallback: function profileCompleteCallback(error, data) {
+    if (error) {
+
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+     externAppsFunctions.loginComplete();
+  },
+
+ plonkListCallback: function plonkListCallback(error, data) {
+    if (error) {
+
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+
+    var plonks = data["plonks"];
 
       var newHTML  = plonkIndexTemplate({plonks: plonks});
       $("#plonk-list").html(newHTML);
 
-    }
 
-    if (data["messages"]){
+      $('.plonkRow').click(function(event) {
+        // row was clicked
+        console.log(event.currentTarget.attributes[1]);
+        console.log(event.currentTarget.attributes[2]);
+         $('table').find('tr.success').removeClass('success');
+          $(this).addClass('success');
+
+         });
+  },
+
+ messageListCallback: function messageListCallback(error, data) {
+    if (error) {
+
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
       var messages = data["messages"];
 
       var newHTML  = messageIndexTemplate({messages: messages});
       $("#message-list").html(newHTML);
-    }
-
-     if (data["street_address"]){
-         externAppsFunctions.loginComplete();
-    }
-  },
+},
 
 
   callbackGetOnePlonk: function callbackGetOnePlonk(error, data) {
@@ -50,6 +72,11 @@ var plonkExtras = {
      externAppsFunctions.onePlonkReturned(data);
   },
 
+};
+
+var plonkExtras = {
+  tokenID: 0,
+  userID: 0,
 
 
   ajaxCreateProfile: function (e,fName,lName,uName,address,city,state,zip){
@@ -67,7 +94,7 @@ var plonkExtras = {
       }
 
     e.preventDefault();
-    tttapi.createProfile(this.tokenID, this.userID, myData, this.callback);
+    tttapi.createProfile(this.tokenID, this.userID, myData, plonkCallbacks.profileCompleteCallback);
   },
 
 
@@ -85,7 +112,7 @@ var plonkExtras = {
       }
 
     e.preventDefault();
-    tttapi.createPlonk(this.tokenID, myData, this.callback);
+    tttapi.createPlonk(this.tokenID, myData, plonkCallbacks.callback);
   },
 
   ajaxUpdatePlonk: function (e,vYard,variety,year,numBottles,price,willTrade, plonkID){
@@ -101,7 +128,7 @@ var plonkExtras = {
       }
 
     e.preventDefault();
-    tttapi.updatePlonk(this.tokenID, plonkID, myData, this.callback);
+    tttapi.updatePlonk(this.tokenID, plonkID, myData, plonkCallbacks.callback);
   },
 
  ajaxCreateMessage: function (e,copy,receiver,mContent){
@@ -116,38 +143,38 @@ var plonkExtras = {
       }
 
     e.preventDefault();
-    tttapi.createMessage(this.tokenID, myData, this.callback);
+    tttapi.createMessage(this.tokenID, myData, plonkCallbacks.callback);
   },
 
   ajaxShowPlonk: function(e,query){
     e.preventDefault();
-    tttapi.showPlonk(this.tokenID, this.userID, query, this.callback);
+    tttapi.showPlonk(this.tokenID, this.userID, query, plonkCallbacks.plonkListCallback);
   },
 
   ajaxGetOnePlonk: function(e, plonkID){
     e.preventDefault();
-    tttapi.getOnePlonk(this.tokenID, plonkID, this.callbackGetOnePlonk);
+    tttapi.getOnePlonk(this.tokenID, plonkID, plonkCallbacks.callbackGetOnePlonk);
   },
 
   ajaxShowAllMessages: function(e){
     e.preventDefault();
-    tttapi.showAllMessages(this.tokenID, this.callback);
+    tttapi.showAllMessages(this.tokenID, plonkCallbacks.messageListCallback);
   },
 
 
   ajaxDisplayUsersMessages: function(e){
     e.preventDefault();
-    tttapi.displayUsersMessages(this.tokenID, this.userID, this.callback);
+    tttapi.displayUsersMessages(this.tokenID, this.userID, plonkCallbacks.messageListCallback);
   },
 
   ajaxDestoryUsersMessages: function(e){
     e.preventDefault();
-    tttapi.destoryUsersMessages(this.tokenID, this.userID, this.callback);
+    tttapi.destoryUsersMessages(this.tokenID, this.userID, plonkCallbacks.callback);
   },
 
   ajaxDeletePlonk: function(e, id) {
     e.preventDefault();
-    tttapi.destoryPlonk(this.tokenID, id, this.callback);
+    tttapi.destoryPlonk(this.tokenID, id, plonkCallbacks.callback);
   },
 
 
