@@ -8,14 +8,10 @@
 }
 
 body{
-  background: url("background.jpg");*/
-  background-size: cover;
-
-  /*background-position: center;*/
-background-position: right top;
+  background: url("background.jpg");
+  background-position: right top;
   background-repeat: no-repeat;
-  /*background-size: 800px 800px;*/
-  /*background-position: top -90px left 00px;*/
+
 }
 
 .introText {
