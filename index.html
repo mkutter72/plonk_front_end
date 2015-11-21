@@ -155,11 +155,7 @@
 
         <button id = "plonkButton" class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
 
-       <label for="inputPlonkID" class="sr-only">Plonk ID</label>
-       <input type="text" id="inputPlonkID" class="form-control" placeholder="Plonk ID" required autofocus>
-
         <button id = "plonkDeleteButton" class="btn btn-lg btn-primary" type="submit">Delete</button>
-        <button id = "plonkFindButton" class="btn btn-lg btn-primary" type="submit">Find</button>
         <button id = "plonkSaveButton" class="btn btn-lg btn-primary" type="submit">Save</button>
       </form>
       </div>
@@ -254,13 +250,20 @@
                     <th>Price</th>
                     <th>Will Trade</th>
                     <th>Owner</th>
-                    <th>ID</th>
                 </tr>
             </thead>
             <tbody id="plonk-list">
                   <script id="plonk-index" type="text/x-handlebars-template">
                     {{#each plonks}}
-                      <tr class="plonkRow" data-uname="{{user_name}}" data-id="{{id}}">
+                      <tr class="plonkRow"
+                        data-vineyard="{{vineyard}}"
+                        data-variety="{{variety}}"
+                        data-year="{{year}}"
+                        data-numBottles="{{number_of_bottles}}"
+                        data-price="{{price}}"
+                        data-will_trade="{{will_trade}}"
+                        data-uname="{{user_name}}"
+                        data-id="{{id}}">
                         <td>{{vineyard}}</td>
                         <td>{{variety}}</td>
                         <td>{{year}}</td>
@@ -268,7 +271,6 @@
                         <td>{{price}}</td>
                         <td>{{will_trade}}</td>
                         <td>{{user_name}}</td>
-                        <td>{{id}}</td>
                       </tr>
                     {{/each}}
                   </script>

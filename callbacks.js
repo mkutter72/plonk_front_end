@@ -47,6 +47,8 @@ var plonkCallbacks = {
         $('table').find('tr.success').removeClass('success');
         $(this).addClass('success');
 
+        externAppsFunctions.plonkRowSelected(event.currentTarget.attributes);
+
       });
   },
 

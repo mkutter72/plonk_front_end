@@ -156,12 +156,6 @@ body {
   border-top-right-radius: 0;
 }
 
-.form-plonk input[id="inputPlonkID"] {
-  margin-top: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
 
 
 .form-message {
@@ -314,3 +308,8 @@ body {
 #buttonTitle {
   color: white;
 }
+
+#plonkButton {
+   margin-bottom: 5px;
+}
+

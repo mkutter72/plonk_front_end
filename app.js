@@ -2,6 +2,16 @@
 
 var externAppsFunctions = externAppsFunctions || {};
 
+var editPlonkID = -1;
+
+var clearPlonkAd = function (){
+  $('#inputVyard').val("");
+  $('#inputVariety').val("");
+  $('#inputYear').val("");
+  $('#inputNumBottles').val("");
+  $('#inputPrice').val("");
+  $('#inputTrade').val("");
+};
 
 var  allTabsNonActive =function (){
     $('#login-li').removeClass('active');
@@ -43,8 +53,9 @@ var gotoMyPlonkTab = function () {
     $(".form-plonk").show();
     plonkExtras.clearPlonks();
     $(".form-browse-table").show();
-     $(".form-plonkShowMine").show();
-     $("#plonkListTable").css("top",-535);
+    $(".form-plonkShowMine").show();
+    $("#plonkListTable").css("top",-535);
+    clearPlonkAd();
 }
 
 
@@ -57,18 +68,20 @@ var updatePlonkAdInfo = function(data) {
   $('#inputTrade').val(data["will_trade"]);
 };
 
+
+var updatePlonkAdInfoFromRow = function(data) {
+  $('#inputVyard').val(data[1].value);
+  $('#inputVariety').val(data[2].value);
+  $('#inputYear').val(data[3].value);
+  $('#inputNumBottles').val(data[4].value);
+  $('#inputPrice').val(data[5].value);
+  $('#inputTrade').val(data[6].value);
+  editPlonkID = data[8].value
+};
+
+
 var initializeApp = function () {
 
-    var editPlonkID = -1;
-
-    var clearPlonkAd = function (){
-      $('#inputVyard').val("");
-      $('#inputVariety').val("");
-      $('#inputYear').val("");
-      $('#inputNumBottles').val("");
-      $('#inputPrice').val("");
-      $('#inputTrade').val("");
-    };
 
   // Setup the callbacks for button clicks on the UI
   // Create User Profile
@@ -88,11 +101,6 @@ var initializeApp = function () {
       clearPlonkAd();
     });
 
-  // Find a single plonk
-   $('#plonkFindButton').on('click', function(event) {
-    editPlonkID = $('#inputPlonkID').val();
-    plonkExtras.ajaxGetOnePlonk(event,editPlonkID);
-    });
 
   // Update an existing plonk ad
    $('#plonkSaveButton').on('click', function(event) {
@@ -103,7 +111,6 @@ var initializeApp = function () {
 
         clearPlonkAd();
         editPlonkID = -1;
-        $('#inputPlonkID').val("");
       };
     });
 
@@ -142,10 +149,9 @@ var initializeApp = function () {
 
   // Delete a plonk ad
   $('#plonkDeleteButton').on('click', function(event) {
-    if ($('#inputPlonkID').val())
-      plonkExtras.ajaxDeletePlonk(event, $('#inputPlonkID').val());
+    if (editPlonkID > 0)
+      plonkExtras.ajaxDeletePlonk(event, editPlonkID);
 
-    $('#inputPlonkID').val("");
     clearPlonkAd();
     });
 
@@ -170,14 +176,6 @@ var initializeApp = function () {
     plonkExtras.ajaxDestoryUsersMessages(event);
     plonkExtras.clearMessages();
     });
-
-
- // this doesn't work
- $('#plonk-table').on('click', function(event) {
-    var clicked_tr = $(this);
-    $('#plonk-table tr').removeClass("highlight");
-    clicked_tr.addClass('highlight');
-  });
 
 
   $('#profile-tab').on('click', function(event) {
@@ -222,3 +220,4 @@ externAppsFunctions['initApps'] = initializeApp;
 externAppsFunctions['loginComplete'] = gotoMyPlonkTab;
 externAppsFunctions['registerComplete'] = goToLoginTab;
 externAppsFunctions['onePlonkReturned'] = updatePlonkAdInfo;
+externAppsFunctions['plonkRowSelected'] = updatePlonkAdInfoFromRow;
