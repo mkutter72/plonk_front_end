@@ -226,5 +226,4 @@ externAppsFunctions['loginComplete'] = gotoMyPlonkTab;
 externAppsFunctions['registerComplete'] = goToLoginTab;
 externAppsFunctions['onePlonkReturned'] = updatePlonkAdInfo;
 externAppsFunctions['plonkRowSelected'] = updatePlonkAdInfoFromRow;
-externAppsFunctions['plonkRowSelected'] = updatePlonkAdInfoFromRow;
 externAppsFunctions['updateMyPlonkList'] = getUserPlonkList;
