@@ -42,7 +42,7 @@ var plonkExtras = {
       }
 
     e.preventDefault();
-    tttapi.createPlonk(this.tokenID, myData, plonkCallbacks.callback);
+    tttapi.createPlonk(this.tokenID, myData, plonkCallbacks.callbackMyPlonkUpdate);
   },
 
   ajaxUpdatePlonk: function (e,vYard,variety,year,numBottles,price,willTrade, plonkID){
@@ -58,7 +58,7 @@ var plonkExtras = {
       }
 
     e.preventDefault();
-    tttapi.updatePlonk(this.tokenID, plonkID, myData, plonkCallbacks.callback);
+    tttapi.updatePlonk(this.tokenID, plonkID, myData, plonkCallbacks.callbackMyPlonkUpdate);
   },
 
  ajaxCreateMessage: function (e,copy,receiver,mContent){
@@ -104,7 +104,7 @@ var plonkExtras = {
 
   ajaxDeletePlonk: function(e, id) {
     e.preventDefault();
-    tttapi.destoryPlonk(this.tokenID, id, plonkCallbacks.callback);
+    tttapi.destoryPlonk(this.tokenID, id, plonkCallbacks.callbackMyPlonkUpdate);
   },
 
 

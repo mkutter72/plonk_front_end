@@ -42,8 +42,6 @@ var plonkCallbacks = {
 
     $('.plonkRow').click(function(event) {
         // row was clicked
-        console.log(event.currentTarget.attributes[1]);
-        console.log(event.currentTarget.attributes[2]);
         $('table').find('tr.success').removeClass('success');
         $(this).addClass('success');
 
@@ -74,4 +72,12 @@ var plonkCallbacks = {
     externAppsFunctions.onePlonkReturned(data);
   },
 
+ callbackMyPlonkUpdate: function callbackMyPlonkUpdate(error, data) {
+    if (error) {
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+
+    externAppsFunctions.updateMyPlonkList();
+  },
 };

@@ -47,6 +47,10 @@ var goToLoginTab = function() {
   $(".form-signin").show();
 };
 
+var getUserPlonkList = function(){
+  plonkExtras.ajaxShowPlonk(event, "?user_id=" + plonkExtras.userID);
+};
+
 var gotoMyPlonkTab = function () {
     allTabsNonActive();
     $('#plonk-li').addClass('active');
@@ -56,7 +60,8 @@ var gotoMyPlonkTab = function () {
     $(".form-plonkShowMine").show();
     $("#plonkListTable").css("top",-535);
     clearPlonkAd();
-}
+    getUserPlonkList();
+};
 
 
 var updatePlonkAdInfo = function(data) {
@@ -143,7 +148,7 @@ var initializeApp = function () {
 
   // Show all plonk that belongs to the current user
   $('#plonkShowMineButton').on('click', function(event) {
-    plonkExtras.ajaxShowPlonk(event, "?user_id=" + plonkExtras.userID);
+    getUserPlonkList();
     });
 
 
@@ -221,3 +226,5 @@ externAppsFunctions['loginComplete'] = gotoMyPlonkTab;
 externAppsFunctions['registerComplete'] = goToLoginTab;
 externAppsFunctions['onePlonkReturned'] = updatePlonkAdInfo;
 externAppsFunctions['plonkRowSelected'] = updatePlonkAdInfoFromRow;
+externAppsFunctions['plonkRowSelected'] = updatePlonkAdInfoFromRow;
+externAppsFunctions['updateMyPlonkList'] = getUserPlonkList;
