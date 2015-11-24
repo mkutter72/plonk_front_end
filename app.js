@@ -58,7 +58,7 @@ var gotoMyPlonkTab = function () {
     plonkExtras.clearPlonks();
     $(".form-browse-table").show();
     $(".form-plonkShowMine").show();
-    $("#plonkListTable").css("top",-535);
+    $("#plonkListTable").css("top",-447);
     clearPlonkAd();
     getUserPlonkList();
 };
@@ -145,12 +145,6 @@ var initializeApp = function () {
     $('#inputPlonkType').val("");
     $('#inputPlonkCity').val("");
     });
-
-  // Show all plonk that belongs to the current user
-  $('#plonkShowMineButton').on('click', function(event) {
-    getUserPlonkList();
-    });
-
 
   // Delete a plonk ad
   $('#plonkDeleteButton').on('click', function(event) {
