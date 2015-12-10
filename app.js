@@ -194,22 +194,28 @@ var initializeApp = function () {
   });
 
   $('#browse-tab').on('click', function(event) {
-    plonkExtras.clearPlonks();
-    goToBrowseTab();
-    $("#plonkListTable").css("top",-210);
+    if (plonkExtras.loggedIn) {
+      plonkExtras.clearPlonks();
+      goToBrowseTab();
+      $("#plonkListTable").css("top",-210);
+      };
     });
 
   $('#plonk-tab').on('click', function(event) {
+      if (plonkExtras.loggedIn) {
         gotoMyPlonkTab()
+      };
   });
 
  $('#message-tab').on('click', function(event) {
-    allTabsNonActive();
-    $('#message-li').addClass('active');
-    $(".form-message").show();
-    plonkExtras.clearMessages();
-    $(".form-message-table").show();
-    $("#messageButtonGroup").show();
+    if (plonkExtras.loggedIn) {
+      allTabsNonActive();
+      $('#message-li').addClass('active');
+      $(".form-message").show();
+      plonkExtras.clearMessages();
+      $(".form-message-table").show();
+      $("#messageButtonGroup").show();
+    };
   });
 
 };

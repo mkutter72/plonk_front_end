@@ -7,6 +7,7 @@ var externAppsFunctions = externAppsFunctions || {};
 var plonkExtras = {
   tokenID: 0,
   userID: 0,
+  loggedIn: false,
 
 
   ajaxCreateProfile: function (e,fName,lName,uName,address,city,state,zip){
@@ -355,6 +356,7 @@ $(function() {
       // after successful login,  save the token and User ID
       plonkExtras.tokenID = data.user.token;
       plonkExtras.userID = data.user.id;
+      plonkExtras.loggedIn = true;
       externAppsFunctions.loginComplete();
     };
     e.preventDefault();
