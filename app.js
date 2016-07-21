@@ -20,6 +20,7 @@ var  allTabsNonActive =function (){
     $('#plonk-li').removeClass('active');
     $('#message-li').removeClass('active');
     $('#register-li').removeClass('active');
+    $('#logout-li').removeClass('active');
 
     $(".form-signin").hide();
     $(".form-register").hide();
@@ -205,6 +206,14 @@ var initializeApp = function () {
       if (plonkExtras.loggedIn) {
         gotoMyPlonkTab()
       };
+  });
+
+  $('#logout-tab').on('click', function(event) {
+      if (plonkExtras.loggedIn) {
+        goToLoginTab();
+        $(".introText").show();
+        plonkExtras.loggedIn = false;
+      }
   });
 
  $('#message-tab').on('click', function(event) {

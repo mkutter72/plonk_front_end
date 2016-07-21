@@ -319,6 +319,7 @@ $(function() {
     if (error) {
       console.error(error);
       $('.loginStatus').text("Error in registration");
+      alert("Error in registeration")
       return;
     }
     $('.loginStatus').text("Successful registration");
@@ -326,6 +327,12 @@ $(function() {
   };
 
   $('#registerButton').on('click', function(e) {
+
+    if ($('#regInputPassword').val() !== $('#confirmPassword').val()) {
+      alert("Passwords do not match");
+      return;
+    }
+
     var stuff = {email: $('#regInputEmail').val(),
                 password: $('#regInputPassword').val(),
                 password_confirmation: $('#confirmPassword').val()};
@@ -348,6 +355,7 @@ $(function() {
       if (error) {
         $('.loginStatus').text("Error in login");
         callback(error);
+        alert("Login Failed");
         return;
       }
       callback(null, data);
