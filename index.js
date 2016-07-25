@@ -327,7 +327,7 @@ $(function() {
   };
 
   $('#registerButton').on('click', function(e) {
-
+     e.preventDefault();
     if ($('#regInputPassword').val() !== $('#confirmPassword').val()) {
       externAppsFunctions.displayErrorMessage("Password do not match");
       return;
@@ -338,12 +338,7 @@ $(function() {
                 password_confirmation: $('#confirmPassword').val()};
 
     var credentials = wrap('credentials', stuff)
-
-
     tttapi.register(credentials, registerCallback);
-    e.preventDefault(); /* should always be called with a submit event,  default is brower packs data up
-                          and send to webpage server.  You want to send it to data server
-                          IF SOMETHING IS CLICKABLE AND YOU ARE DOING SOMETHING IN J SCRIPT CALL this */
   });
 
   $('#loginButton').on('click', function(e) {
