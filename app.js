@@ -4,10 +4,13 @@ var externAppsFunctions = externAppsFunctions || {};
 
 var editPlonkID = -1;
 
-var displayModal = function (message){
+var displayModal = function (title,message){
   var modal = document.getElementById('myModal');
   var body = document.getElementById("messageText");
+  var header = document.getElementById("modalHeader");
+
   body.innerHTML = message;
+  header.innerHTML = title;
   modal.style.display = "block";
 }
 
