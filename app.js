@@ -4,6 +4,13 @@ var externAppsFunctions = externAppsFunctions || {};
 
 var editPlonkID = -1;
 
+var displayModal = function (message){
+  var modal = document.getElementById('myModal');
+  var body = document.getElementById("messageText");
+  body.innerHTML = message;
+  modal.style.display = "block";
+}
+
 var clearPlonkAd = function (){
   $('#inputVyard').val("");
   $('#inputVariety').val("");
@@ -227,6 +234,12 @@ var initializeApp = function () {
     };
   });
 
+ $('#closeButton').on('click',function (e){
+    e.preventDefault();
+    var modal = document.getElementById('myModal');
+    modal.style.display = "none";
+  });
+
 };
 
 // Setup so index.js file can call this
@@ -236,3 +249,4 @@ externAppsFunctions['registerComplete'] = goToLoginTab;
 externAppsFunctions['onePlonkReturned'] = updatePlonkAdInfo;
 externAppsFunctions['plonkRowSelected'] = updatePlonkAdInfoFromRow;
 externAppsFunctions['updateMyPlonkList'] = getUserPlonkList;
+externAppsFunctions['displayErrorMessage'] = displayModal;

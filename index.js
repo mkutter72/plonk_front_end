@@ -319,7 +319,7 @@ $(function() {
     if (error) {
       console.error(error);
       $('.loginStatus').text("Error in registration");
-      alert("Error in registeration")
+      externAppsFunctions.displayErrorMessage("Error in Registration");
       return;
     }
     $('.loginStatus').text("Successful registration");
@@ -329,7 +329,7 @@ $(function() {
   $('#registerButton').on('click', function(e) {
 
     if ($('#regInputPassword').val() !== $('#confirmPassword').val()) {
-      alert("Passwords do not match");
+      externAppsFunctions.displayErrorMessage("Password do not match");
       return;
     }
 
@@ -355,7 +355,7 @@ $(function() {
       if (error) {
         $('.loginStatus').text("Error in login");
         callback(error);
-        alert("Login Failed");
+        externAppsFunctions.displayErrorMessage("Login Failed");
         return;
       }
       callback(null, data);
