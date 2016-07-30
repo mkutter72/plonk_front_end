@@ -8,6 +8,7 @@ var plonkExtras = {
   tokenID: 0,
   userID: 0,
   loggedIn: false,
+  hasProfile: false,
 
 
   ajaxCreateProfile: function (e,fName,lName,uName,address,city,state,zip){
@@ -28,6 +29,28 @@ var plonkExtras = {
     tttapi.createProfile(this.tokenID, this.userID, myData, plonkCallbacks.profileCompleteCallback);
   },
 
+  ajaxUpdateProfile: function (e,fName,lName,uName,address,city,state,zip){
+    var myData = {
+      "profile": {
+        "first_name": fName,
+        "last_name": lName,
+        "user_name": uName,
+        "street_address": address,
+        "city": city,
+        "state": state,
+        "zip_code": zip,
+        "user_id" : this.userID
+        }
+      }
+
+    e.preventDefault();
+    tttapi.updateProfile(this.tokenID, this.userID, myData, plonkCallbacks.callback);
+  },
+
+ ajaxGetProfile: function(e){
+    e.preventDefault();
+    tttapi.getProfile(this.tokenID, this.userID, plonkCallbacks.profileDisplayCallback);
+  },
 
   ajaxCreatePlonk: function (e,vYard,variety,year,numBottles,price,willTrade){
     var myData = {
@@ -59,7 +82,7 @@ var plonkExtras = {
       }
 
     e.preventDefault();
-    tttapi.updatePlonk(this.tokenID, plonkID, myData, plonkCallbacks.callbackMyPlonkUpdate);
+    tttapi.updatePlonk(this.tokenID, plonkID, myData, plonkCallbacks.callback);
   },
 
  ajaxCreateMessage: function (e,copy,receiver,mContent){
@@ -108,6 +131,10 @@ var plonkExtras = {
     tttapi.destoryPlonk(this.tokenID, id, plonkCallbacks.callbackMyPlonkUpdate);
   },
 
+  ajaxLogout: function(e) {
+      e.preventDefault();
+      tttapi.logout(this.tokenID, this.userID, plonkCallbacks.callback);
+  },
 
   clearMessages: function () {
       var newHTML  = messageIndexTemplate({messages: []});
@@ -118,15 +145,15 @@ var plonkExtras = {
       var newHTML  = plonkIndexTemplate({messages: []});
       $("#plonk-list").html(newHTML);
   }
+
 };
 
 
 
 
 var tttapi = {
-  gameWatcher: null,
   ttt: 'https://powerful-earth-3914.herokuapp.com/',
-
+//  ttt:'http://localhost:3000',
   ajax: function(config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
       cb(null, data);
@@ -155,11 +182,46 @@ var tttapi = {
     }, callback);
   },
 
+  logout: function logout(credentials, id, callback) {
+    this.ajax({
+      method: 'DELETE',
+      url: this.ttt + '/logout/' + id,
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify(credentials),
+      dataType: 'json',
+    }, callback);
+  },
 
   createProfile: function (token, id, data, callback) {
     this.ajax({
       method: 'POST',
       url: this.ttt + '/profiles',
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify(data),
+      dataType: 'json',
+    }, callback);
+  },
+
+  getProfile: function (token, id,callback) {
+    this.ajax({
+      method: 'GET',
+      url: this.ttt + '/profiles/' + id,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+    }, callback);
+  },
+
+
+  updateProfile: function (token, id, data, callback) {
+    this.ajax({
+      method: 'PATCH',
+      url: this.ttt + '/profiles/' + id,
       headers: {
         Authorization: 'Token token=' + token
       },

@@ -95,6 +95,15 @@ var updatePlonkAdInfoFromRow = function(data) {
   editPlonkID = data[8].value
 };
 
+var displayProfile = function (data){
+    $('#inputFname').val(data.first_name);
+    $('#inputLname').val(data.last_name);
+    $('#inputUname').val(data.user_name);
+    $('#inputAddress').val(data.street_address);
+    $('#inputCity').val(data.city);
+    $('#inputState').val(data.state);
+    $('#inputZip').val(data.zip_code);
+};
 
 var initializeApp = function () {
 
@@ -102,9 +111,15 @@ var initializeApp = function () {
   // Setup the callbacks for button clicks on the UI
   // Create User Profile
   $('#profileButton').on('click', function(event) {
-    plonkExtras.ajaxCreateProfile(event,$('#inputFname').val(),$('#inputLname').val(),
-      $('#inputUname').val(),$('#inputAddress').val(),$('#inputCity').val(),
-      $('#inputState').val(),$('#inputZip').val());
+    if (plonkExtras.hasProfile) {
+      plonkExtras.ajaxUpdateProfile(event,$('#inputFname').val(),$('#inputLname').val(),
+        $('#inputUname').val(),$('#inputAddress').val(),$('#inputCity').val(),
+        $('#inputState').val(),$('#inputZip').val());
+    }else {
+      plonkExtras.ajaxCreateProfile(event,$('#inputFname').val(),$('#inputLname').val(),
+        $('#inputUname').val(),$('#inputAddress').val(),$('#inputCity').val(),
+        $('#inputState').val(),$('#inputZip').val());
+      };
     });
 
 
@@ -189,9 +204,13 @@ var initializeApp = function () {
 
 
   $('#profile-tab').on('click', function(event) {
-    allTabsNonActive();
-    $('#profile-li').addClass('active');
-    $(".form-profile").show();
+    if (plonkExtras.loggedIn) {
+      plonkExtras.hasProfile = false;
+      allTabsNonActive();
+      $('#profile-li').addClass('active');
+      $(".form-profile").show();
+      plonkExtras.ajaxGetProfile(event);
+    }
   });
 
   $('#login-tab').on('click', function(event) {
@@ -223,6 +242,7 @@ var initializeApp = function () {
         goToLoginTab();
         $(".introText").show();
         plonkExtras.loggedIn = false;
+        plonkExtras.ajaxLogout(event);
       }
   });
 
@@ -253,3 +273,5 @@ externAppsFunctions['onePlonkReturned'] = updatePlonkAdInfo;
 externAppsFunctions['plonkRowSelected'] = updatePlonkAdInfoFromRow;
 externAppsFunctions['updateMyPlonkList'] = getUserPlonkList;
 externAppsFunctions['displayErrorMessage'] = displayModal;
+externAppsFunctions['displayUserProfile'] = displayProfile;
+

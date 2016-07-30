@@ -27,6 +27,18 @@ var plonkCallbacks = {
     externAppsFunctions.loginComplete();
   },
 
+  profileDisplayCallback: function profileDisplayCallback(error, data) {
+    // an error is expect when a new user is being created and the profile does not yet exist
+    if (error) {
+      $("#profileForm")[0].reset();
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+
+    plonkExtras.hasProfile = true;
+    externAppsFunctions.displayUserProfile(data);
+  },
+
   plonkListCallback: function plonkListCallback(error, data) {
     if (error) {
 
