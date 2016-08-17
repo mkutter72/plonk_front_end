@@ -152,8 +152,8 @@ var plonkExtras = {
 
 
 var tttapi = {
-  ttt: 'https://powerful-earth-3914.herokuapp.com/',
-//  ttt:'http://localhost:3000',
+   ttt: 'https://powerful-earth-3914.herokuapp.com/',
+   //ttt:'http://localhost:3000',
   ajax: function(config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
       cb(null, data);

@@ -28,15 +28,17 @@ var plonkCallbacks = {
   },
 
   profileDisplayCallback: function profileDisplayCallback(error, data) {
-    // an error is expect when a new user is being created and the profile does not yet exist
-    if (error) {
+    var dataStr = JSON.stringify(data, null, 4);
+
+    if (error || data.profiles.length === 0) {
       $("#profileForm")[0].reset();
-      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      if (error)
+        $('#result').val('status: ' + error.status + ', error: ' +error.error);
       return;
     }
 
     plonkExtras.hasProfile = true;
-    externAppsFunctions.displayUserProfile(data);
+    externAppsFunctions.displayUserProfile(data.profiles[0]);
   },
 
   plonkListCallback: function plonkListCallback(error, data) {
