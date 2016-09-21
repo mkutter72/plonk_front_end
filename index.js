@@ -404,11 +404,15 @@ $(function() {
   });
 
   $('#loginButton').on('click', function(e) {
+    $("*").css("cursor", "progress");
+
     var stuff = {email: $('#inputEmail').val(),
                   password: $('#inputPassword').val()};
 
     var credentials = wrap('credentials', stuff); //form2object(this));
     var cb = function cb(error, data) {
+      $("*").css("cursor", "default");
+
       if (error) {
         $('.loginStatus').text("Error in login");
         callback(error);
