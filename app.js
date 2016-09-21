@@ -254,6 +254,7 @@ var initializeApp = function () {
       plonkExtras.clearMessages();
       $(".form-message-table").show();
       $("#messageButtonGroup").show();
+      plonkExtras.ajaxDisplayUsersMessages(event);
     };
   });
 
